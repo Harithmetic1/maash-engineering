@@ -1,8 +1,18 @@
 'use client';
 import React, { useEffect, useState } from 'react'
-
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 function HomeCarousel() {
+
+
+    const autoplayOptions = {
+        delay: 4000,
+        rootNode: (emblaRoot) => emblaRoot.parentElement
+      }
+      
+
+    const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay(autoplayOptions)])
 
     const services = [
         {
@@ -28,11 +38,11 @@ function HomeCarousel() {
     const numberOfSlides = 3;
 
 
-    useEffect(() => {
-        setTimeout(() => {
-            setCurrentSlideIndex((currentSlideIndex + 1) % numberOfSlides);
-        }, 15000);
-    }, [currentSlideIndex]);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setCurrentSlideIndex((currentSlideIndex + 1) % numberOfSlides);
+    //     }, 15000);
+    // }, [currentSlideIndex]);
 
     const handleShowSlider = (index) => {
         switch (index) {
@@ -94,10 +104,24 @@ function HomeCarousel() {
 
 
   return (
-    <div>
+    <div className="embla" ref={emblaRef}>
+        <div className="embla__container">
         {
-            handleShowSlider(currentSlideIndex)
+            services.map((service, index) => (
+                <div key={service.title} className={`slider-items embla__slide ${index == 0 ? "slide-in" : "fade-out"} w-[100vw] h-[90svh] ${service.bg_image}`}>
+                <div className="slider-content w-full h-full  flex justify-center items-center">
+                    <div className="content-container w-11/12 opacity-100">
+                        <h1 className='text-7xl font-bold text-white'>{service.title}</h1>
+                        <p className='text-white lg:w-[465px] whitespace-pre-line pt-4'>{service.description}</p>
+                        <button className='bg-white text-black font-bold py-2 px-14 rounded mt-4'>
+                            Contact Us
+                        </button>
+                    </div>
+                </div>
+            </div>
+            ))
         }
+        </div>
     </div>
   )
 }

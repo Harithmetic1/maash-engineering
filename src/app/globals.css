@@ -29,6 +29,17 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
 .equipments-page-header{
   background-image: linear-gradient(rgba(0, 0, 0, 0.5),
   rgba(0, 0, 0, 0.5)), url("/Construction-site.png");
