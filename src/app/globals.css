@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -24,4 +26,159 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    font-family: 'Montserrat', sans-serif;
+}
+
+.equipments-page-header{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.5)), url("/Construction-site.png");
+  background-repeat:  no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.5s ease-in-out;
+}
+
+.oil_and_gas{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.5)), url("/Oil and Gas.png");
+  background-repeat:  no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.5s ease-in-out;
+}
+
+.heavy_duty_leasing{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.5)), url("/Heavy Duty Leasing.png");
+  background-repeat:  no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.5s ease-in-out;
+}
+
+.pipeline_welding{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.5)), url("/Pipeline Welding & Maintenance.png");
+  background-repeat:  no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.5s ease-in-out;
+}
+
+.slide-in{
+  animation: slide-in 0.1s forwards ease-in-out;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.fade-out{
+  animation: fade-out 0.1s forwards ease-in-out;
+}
+
+@keyframes fade-out {
+  0% {
+    transform: translateX(0);
+  }
+  95% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-100%);
+    display: none;
+  }
+}
+
+.reveal-nav{
+  animation: reveal-nav 0.1s forwards ease-in-out;
+}
+
+@keyframes reveal-nav {
+  0% {
+    transform: translateY(-500%);
+    display: none;
+  }
+  75% {
+    display: none;
+  }
+  50% {
+    display: none;
+  }
+  100% {
+    transform: translateX(0);
+    display: flex;
+  }
+}
+
+.hide-nav{
+  animation: hide-nav 0.1s forwards ease-in-out;
+}
+
+@keyframes hide-nav {
+  0% {
+    transform: translateY(0);
+    display: flex;
+  }
+  25% {
+    display: none;
+  }
+  50% {
+    display: none;
+  }
+  100% {
+    transform: translateY(-500%);
+    display: none;
+  }
+}
+.reveal-search{
+  animation: reveal-search 0.1s forwards ease-in-out;
+}
+
+@keyframes reveal-search {
+  0% {
+    transform: translateY(-500%);
+    display: none;
+  }
+  75% {
+    display: none;
+  }
+  50% {
+    display: none;
+  }
+  100% {
+    transform: translateX(0);
+    display: flex;
+  }
+}
+
+.hide-search{
+  animation: hide-search 0.1s forwards ease-in-out;
+}
+
+@keyframes hide-search {
+  0% {
+    transform: translateY(0);
+    display: flex;
+  }
+  25% {
+    display: none;
+  }
+  50% {
+    display: none;
+  }
+  100% {
+    transform: translateY(-500%);
+    display: none;
+  }
+}
+
+.equipment-card-container, .featured-equipment-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
