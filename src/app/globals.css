@@ -38,6 +38,12 @@ body {
 .embla__slide {
   flex: 0 0 100%;
   min-width: 0;
+  width: 100%;
+  height: 90svh;
+}
+
+.header{
+  max-width: 100vw;
 }
 
 .equipments-page-header{
@@ -108,17 +114,12 @@ body {
 
 .reveal-nav{
   animation: reveal-nav 0.1s forwards ease-in-out;
+  display: flex;
 }
 
 @keyframes reveal-nav {
   0% {
     transform: translateY(-500%);
-    display: none;
-  }
-  75% {
-    display: none;
-  }
-  50% {
     display: none;
   }
   100% {
@@ -129,18 +130,13 @@ body {
 
 .hide-nav{
   animation: hide-nav 0.1s forwards ease-in-out;
+  display: none;
 }
 
 @keyframes hide-nav {
   0% {
     transform: translateY(0);
     display: flex;
-  }
-  25% {
-    display: none;
-  }
-  50% {
-    display: none;
   }
   100% {
     transform: translateY(-500%);
@@ -149,17 +145,12 @@ body {
 }
 .reveal-search{
   animation: reveal-search 0.1s forwards ease-in-out;
+  display: flex;
 }
 
 @keyframes reveal-search {
   0% {
     transform: translateY(-500%);
-    display: none;
-  }
-  75% {
-    display: none;
-  }
-  50% {
     display: none;
   }
   100% {
@@ -170,18 +161,13 @@ body {
 
 .hide-search{
   animation: hide-search 0.1s forwards ease-in-out;
+  display: none;
 }
 
 @keyframes hide-search {
   0% {
     transform: translateY(0);
     display: flex;
-  }
-  25% {
-    display: none;
-  }
-  50% {
-    display: none;
   }
   100% {
     transform: translateY(-500%);
