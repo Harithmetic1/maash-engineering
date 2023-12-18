@@ -16,7 +16,7 @@ const page = () => {
           <div className="about-page-content-text">
             <p className="text-lg sm:text-lg md:text-2xl font-medium text-black">
               We are a team of passionate people whose goal is to improve
-              everyone's life through disruptive products. We build great
+              everyone&#39;s life through disruptive products. We build great
               products to solve your business problems.
             </p>
           </div>
