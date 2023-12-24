@@ -1,11 +1,7 @@
 import Footer from "@/components/Footer";
 import ManagerProfile from "@/components/ManagerProfile";
 import Navbar from "@/components/Navbar";
-import {
-  faArrowLeft,
-  faArrowRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
@@ -87,8 +83,8 @@ const page = () => {
           </div>
         </div>
       </section>
-      <section className="w-full h-fit lg:h-[90svh] flex justify-center items-start">
-        <div className="mission-vision-location w-full h-full flex justify-center items-baseline">
+      <section className="mission-vision-location w-full h-fit lg:h-[90svh] flex justify-center items-start">
+        <div className=" w-full h-full flex justify-center items-baseline">
           <div className="mission-vision-location-container w-full  h-full text-sm md:text-base flex flex-col gap-3 py-5 px-4 items-center lg:flex-row justify-evenly lg:items-end">
             <div className="vision w-full md:w-5/12 lg:w-1/3 xl:w-3/12 flex flex-col gap-5 justify-center items-center h-80 bg-white rounded shadow">
               <div className="vision-header flex justify-between items-center">
