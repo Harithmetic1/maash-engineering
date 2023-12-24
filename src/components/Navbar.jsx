@@ -31,7 +31,7 @@ function Navbar() {
             height={60} 
             />
         </div>
-        <div className="nav-links w-full md:w-7/12 flex justify-center gap-10 items-center">
+        <div className="nav-links w-full md:w-7/12 flex justify-end gap-10 items-center">
             <div className="links border-r-2 border-black">
                 <ul className='flex justify-between items-center'>
                     <li className='inline-block mr-5 cursor-pointer'>
