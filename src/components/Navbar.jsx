@@ -23,7 +23,7 @@ function Navbar() {
   return (
     <>
     <nav className='p-3 hidden sm:flex text-sm lg:text-base xl:px-20  justify-evenly items-center w-full'>
-        <div className="nav-icon w-full">
+        <div className="nav-icon w-full md:w-5/12">
             <Image 
             src='/maash_eng_logo.png' 
             alt='Maash Engineering Logo'
@@ -31,7 +31,7 @@ function Navbar() {
             height={60} 
             />
         </div>
-        <div className="nav-links w-full xl:w-7/12 flex justify-center gap-10 items-center">
+        <div className="nav-links w-full md:w-7/12 flex justify-center gap-10 items-center">
             <div className="links border-r-2 border-black">
                 <ul className='flex justify-between items-center'>
                     <li className='inline-block mr-5 cursor-pointer'>
