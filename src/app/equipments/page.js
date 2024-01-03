@@ -41,23 +41,29 @@ const Equipments = () => {
       <div className="equipments-page-content w-full flex flex-col justify-center items-center">
         <div className="helpers w-full px-10 pt-24 pb-3 flex justify-between items-center">
           <div className="categories-select text-zinc-800 text-base font-bold">
-            <select name="categories" id="categories">
-              <option value="all" selected>
-                All Categories
-              </option>
-              <option value="all">Caterpillar</option>
-              <option value="all">Komatsu</option>
-              <option value="all">Hitachi</option>
-              <option value="all">Volvo</option>
+            <select
+              name="categories"
+              id="categories"
+              defaultValue={"all"}
+              className="outline-none"
+            >
+              <option value="all">All Categories</option>
+              <option value="Caterpillar">Caterpillar</option>
+              <option value="Komatsu">Komatsu</option>
+              <option value="Hitachi">Hitachi</option>
+              <option value="Volvo">Volvo</option>
             </select>
           </div>
           <div className="sort-select text-zinc-800 text-base font-bold">
-            <select name="sort" id="sort">
-              <option value="all" selected>
-                Sort by
-              </option>
-              <option value="all">Name</option>
-              <option value="all">Price</option>
+            <select
+              name="sort"
+              id="sort"
+              defaultValue={"all"}
+              className="outline-none"
+            >
+              <option value="all">Sort by</option>
+              <option value="Name">Name</option>
+              <option value="Price">Price</option>
             </select>
           </div>
         </div>

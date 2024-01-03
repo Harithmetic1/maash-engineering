@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react'
+import Modal from './Modal';
 
 function Navbar() {
 
     const [showNav, setShowNav] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const handleShowSearch = () => {
         setShowSearch(!showSearch);
@@ -46,9 +48,10 @@ function Navbar() {
                 </ul>
             </div>
             <div className="button">
-                <button className='bg-black text-white font-bold py-2 px-3 rounded'>
+                <button className='bg-black text-white font-bold py-2 px-3 rounded' onClick={() => setShowModal(true)}>
                     Contact Us
                 </button>
+                {showModal && <Modal onClose={() => setShowModal(false)} />}
             </div>
         </div>
     </nav>
@@ -87,9 +90,10 @@ function Navbar() {
                 </ul>
             </div>
             <div className="button">
-                <button className='bg-black text-white font-bold py-2 px-3 rounded'>
+                <button className='bg-black text-white font-bold py-2 px-3 rounded' onClick={() => setShowModal(true)}>
                     Contact Us
                 </button>
+                {showModal && <Modal onClose={() => setShowModal(false)} />}
             </div>
         </div>
         <div className={`search-bar z-0 ${showSearch ? "reveal-search" : "hide-search"} w-full flex flex-col justify-center gap-4 items-center`}>
