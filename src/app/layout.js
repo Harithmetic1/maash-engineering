@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Provider from "@/utils/provider";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -13,7 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }

@@ -1,11 +1,50 @@
+"use client";
 import EquipmentCard from "@/components/EquipmentCard";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useQuery } from "@tanstack/react-query";
+import { getEquipments } from "@/api/api";
+import Image from "next/image";
 import React from "react";
 
 const Equipments = () => {
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ["equipments"],
+    queryFn: getEquipments,
+  });
+
+  const handleFetchFeaturedEquipments = () => {
+    if (isPending) {
+      return (
+        <div className="flex justify-center items-center w-full h-full animate-spin">
+          <Image src="/loading.svg" alt="loader" width={60} height={60} />
+        </div>
+      );
+    }
+
+    if (isError) {
+      return (
+        <div className="flex justify-center items-center w-full h-full">
+          <p className="text-lg font-bold text-[#363636]">{error.message}</p>
+        </div>
+      );
+    }
+
+    if (data) {
+      return (
+        <div className="featured-equipment-cards  py-11 gap-5 md:justify-between items-center">
+          {data?.map((equipment) => (
+            <div key={equipment.id}>
+              <EquipmentCard {...equipment} />
+            </div>
+          ))}
+        </div>
+      );
+    }
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center">
       <Navbar />
@@ -68,9 +107,7 @@ const Equipments = () => {
           </div>
         </div>
         <div className="equipment-card-container w-full gap-6 gap-y-12 row px-5 sm:px-10 pb-24">
-          {[...Array(8)].map((_, index) => (
-            <EquipmentCard key={index} />
-          ))}
+          {handleFetchFeaturedEquipments()}
         </div>
       </div>
       <Footer />
