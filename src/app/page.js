@@ -1,10 +1,49 @@
+"use client";
+import { getEquipments } from "@/api/api";
 import EquipmentCard from "@/components/EquipmentCard";
 import Footer from "@/components/Footer";
 import HomeCarousel from "@/components/HomeCarousel";
 import Navbar from "@/components/Navbar";
+import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ["equipments"],
+    queryFn: getEquipments,
+  });
+
+  const handleFetchFeaturedEquipments = () => {
+    if (isPending) {
+      return (
+        <div className="flex justify-center items-center w-full h-full animate-spin">
+          <Image src="/loading.svg" alt="loader" width={60} height={60} />
+        </div>
+      );
+    }
+
+    if (isError) {
+      return (
+        <div className="flex justify-center items-center w-full h-full">
+          <p className="text-lg font-bold text-[#363636]">{error.message}</p>
+        </div>
+      );
+    }
+
+    if (data) {
+      return (
+        <div className="featured-equipment-cards  py-11 gap-5 md:justify-between items-center">
+          {data?.map((equipment) => (
+            <div key={equipment.id}>
+              <EquipmentCard {...equipment} />
+            </div>
+          ))}
+        </div>
+      );
+    }
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <section className="header">
@@ -27,13 +66,7 @@ export default function Home() {
             </p>
             <div className="border-2 w-[177px] border-black"></div>
           </div>
-          <div className="featured-equipment-cards  py-11 gap-5 md:justify-between items-center">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i}>
-                <EquipmentCard />
-              </div>
-            ))}
-          </div>
+          {handleFetchFeaturedEquipments()}
           <div className="featured-equipments w-[90vw]">
             <Link
               href="/equipments"

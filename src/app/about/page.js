@@ -77,7 +77,9 @@ const page = () => {
             {
               // Managers Profile
               Array.from({ length: 4 }).map((_, i) => (
-                <ManagerProfile key={i} />
+                <Link href="/about/[manager]" as="/about/manager" key={i}>
+                  <ManagerProfile key={i} />
+                </Link>
               ))
             }
           </div>

@@ -46,7 +46,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="copy flex justify-start items-center mb-9">
+        <div className="copy flex justify-start items-center pb-9">
             <p className="text-xs m-auto text-start pb-2 w-[90vw]">
                 © 2023 Maash Engineering. All rights reserved.
             </p>
