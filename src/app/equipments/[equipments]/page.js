@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useEffect, useId, useState } from "react";
 
-const equipment = ({ params }) => {
+const Equipment = ({ params }) => {
   const id = useId();
   const [equipmentDetails, setEquipmentDetails] = useState({});
   const { isLoading, isError, data, error } = useQuery({
@@ -220,4 +220,4 @@ const equipment = ({ params }) => {
   );
 };
 
-export default equipment;
+export default Equipment;
