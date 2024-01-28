@@ -22,7 +22,7 @@ const EquipmentCard = ({ manufacturer, name, thumbnail, condition, id }) => {
         <div className="featured-equipment-name flex flex-col gap-3 items-start w-full lg:w-80 justify-center text-start">
           <div className='equipmwnt-title'>
             <h6>Manufacturer: <span className='pl-2'>{manufacturer}</span></h6>
-            <h6>Vehicle: <span className='pl-2'>{name}</span></h6>
+            <h6>Name: <span className='pl-2'>{name}</span></h6>
           </div>
           <div className='price-condition flex justify-between items-center w-full'>
             <p className='price'>

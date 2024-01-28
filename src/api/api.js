@@ -15,34 +15,58 @@ export const login = async (username, password) => {
   try {
     const response = await api.post("/login", { username, password });
     // token = response.data.accessToken;
-    console.log(`Login successful. Token: ${response.data.accessToken}`);
+    // console.log(`Login successful. Token: ${response.data.accessToken}`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return error;
   }
 };
 
 export const getEquipments = async () => {
   try {
-    console.log("Fetching equipments...");
+    // console.log("Fetching equipments...");
     const response = await api.get("/equipment/");
-    console.log(response);
+    // console.log(response);
     return response.data.result;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error(`Failed to fetch equipments. ${error}`);
   }
 };
 
 export const getEquipmentByID = async (id) => {
   try {
-    console.log(`Fetching equipment with id: ${id}`);
+    // console.log(`Fetching equipment with id: ${id}`);
     const response = await api.get(`/equipment/${id}`);
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    throw new Error(`Failed to fetch equipment with id: ${id}. ${error}`);
+  }
+};
+export const getEquipmentByParam = async (param, value) => {
+  try {
+    // console.log(`Fetching equipment with id: ${id}`);
+    const response = await api.get(`/equipment/?${param}=${value}`);
+    // console.log(response.data);
+    return response.data.result;
+  } catch (error) {
+    // console.log(error);
+    throw new Error(`Failed to fetch equipment with id: ${id}. ${error}`);
+  }
+};
+
+export const searchEquipments = async (name) => {
+  try {
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    // console.log(`Fetching equipment with id: ${id}`);
+    const response = await api.get(`/equipment/?name=${name}`);
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    // console.log(error);
     throw new Error(`Failed to fetch equipment with id: ${id}. ${error}`);
   }
 };
