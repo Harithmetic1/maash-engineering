@@ -1,8 +1,9 @@
 "use client";
-import { getEquipmentByID } from "@/api/api";
+
 import DownloadSpecs from "@/components/DownloadSpecs";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { useStore } from "@/store/store";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +11,7 @@ import Image from "next/image";
 import React, { useEffect, useId, useState } from "react";
 
 const Equipment = ({ params }) => {
+  const getEquipmentByID = useStore((state) => state.getEquipmentByID);
   const id = useId();
   const [equipmentDetails, setEquipmentDetails] = useState({});
   const { isLoading, isError, data, error } = useQuery({
@@ -22,11 +24,11 @@ const Equipment = ({ params }) => {
   });
 
   const thumbnailImages = () => {
-    if (data?.images) {
-      if (data?.images.length >= 3) {
-        return [data.images[1], data.images[2]];
+    if (data?.gallery) {
+      if (data?.gallery.length >= 3) {
+        return [data.gallery[1], data.gallery[2]];
       } else {
-        return data.images;
+        return data.gallery;
       }
     }
   };
@@ -41,12 +43,12 @@ const Equipment = ({ params }) => {
         details !== "description" &&
         details !== "condition" &&
         details !== "thumbnail" &&
-        details !== "images" &&
+        details !== "gallery" &&
         details !== "createdAt" &&
         details !== "updatedAt" &&
+        details !== "rate" &&
         data[details] !== null
       ) {
-        console.log(details);
         if (details === "model") {
           equipmentDeets["Engine Model"] = data[details];
         } else if (details === "engineCapacity") {
@@ -59,13 +61,11 @@ const Equipment = ({ params }) => {
         }
       }
     });
-    console.log(equipmentDeets);
     setEquipmentDetails(equipmentDeets);
   };
 
   useEffect(() => {
     if (data) {
-      console.log(`This is the data: ${data}`);
       getEquipmentDetails();
     }
   }, [data]);
@@ -169,7 +169,7 @@ const Equipment = ({ params }) => {
           <div className="right equipment-price-specification lg:h-[75vh] w-full px-5">
             <div className="equipment-price-container flex flex-col h-full justify-start items-start gap-2 w-full">
               <div className="price w-full flex justify-between lg:justify-start items-center">
-                <h1 className="flex lg:hidden text-[27px] font-bold">
+                <h1 className="lg:hidden flex justify-center items-baseline text-[27px] font-bold">
                   ₦55,000
                   <span className="text-xs font-normal">Day</span>
                 </h1>
@@ -185,9 +185,9 @@ const Equipment = ({ params }) => {
                 </button>
               </div>
               <div className="specifications flex flex-col justify-center items-start gap-3">
-                <h1 className="lg:flex hidden text-[27px] font-bold">
+                <h1 className="lg:flex hidden text-[27px] items-baseline font-bold">
                   ₦55,000
-                  <span className="text-xs font-normal">Day</span>
+                  <span className="text-xs font-normal">/Day</span>
                 </h1>
                 {equipmentDetails &&
                   Object.keys(equipmentDetails).map((detail, index) => (

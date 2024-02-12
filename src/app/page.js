@@ -1,44 +1,52 @@
 "use client";
-import { getEquipments } from "@/api/api";
+
 import EquipmentCard from "@/components/EquipmentCard";
 import Footer from "@/components/Footer";
 import HomeCarousel from "@/components/HomeCarousel";
 import Navbar from "@/components/Navbar";
+import { useStore } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const getEquipments = useStore((state) => state.getEquipments);
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["equipments"],
     queryFn: getEquipments,
+    // placeholderData: [],
   });
 
   const handleFetchFeaturedEquipments = () => {
+    console.log(`data: ${data && data[0]}`);
     if (isPending) {
       return (
-        <div className="flex justify-center items-center w-full h-full animate-spin">
+        <div className="flex justify-center items-center w-full h-full animate-spin py-11">
           <Image src="/loading.svg" alt="loader" width={60} height={60} />
         </div>
       );
-    }
-
-    if (isError) {
+    } else if (isError) {
       return (
-        <div className="flex justify-center items-center w-full h-full">
+        <div className="flex justify-center items-center w-full h-full py-11">
           <p className="text-lg font-bold text-[#363636]">{error.message}</p>
         </div>
       );
-    }
-
-    if (data) {
+    } else if (data.length > 0) {
       return (
         <div className="featured-equipment-cards  py-11 gap-5 md:justify-between items-center">
           {data?.map((equipment) => (
-            <div key={equipment.id}>
+            <div key={equipment?.id}>
               <EquipmentCard {...equipment} />
             </div>
           ))}
+        </div>
+      );
+    } else if (data.length === 0) {
+      return (
+        <div className="flex justify-center items-center w-full h-full py-11">
+          <p className="text-lg font-bold text-[#363636]">
+            No featured equipment available
+          </p>
         </div>
       );
     }

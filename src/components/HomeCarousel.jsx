@@ -2,17 +2,21 @@
 import React, { useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
+import Modal from './Modal';
 
 function HomeCarousel() {
 
 
     const autoplayOptions = {
         delay: 4000,
-        // rootNode: (emblaRoot) => emblaRoot.parentElement
+        rootNode: (emblaRoot) => emblaRoot.parentElement
       }
       
 
     const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay(autoplayOptions)])
+    const [showModal, setShowModal] = useState(false);
+
+
 
     const services = [
         {
@@ -44,65 +48,6 @@ function HomeCarousel() {
     //     }, 15000);
     // }, [currentSlideIndex]);
 
-    const handleShowSlider = (index) => {
-        switch (index) {
-            case 0:
-            return <div key={services[0].title} className={`slider-items ${index == 0 ? "slide-in" : "fade-out"} w-[100vw] h-[90svh] ${services[0].bg_image}`}>
-                <div className="slider-content w-full h-full  flex justify-center items-center">
-                    <div className="content-container w-11/12 opacity-100">
-                        <h1 className='text-7xl font-bold text-white'>{services[0].title}</h1>
-                        <p className='text-white lg:w-[465px] whitespace-pre-line pt-4'>{services[0].description}</p>
-                        <button className='bg-white text-black font-bold py-2 px-14 rounded mt-4'>
-                            Contact Us
-                        </button>
-                    </div>
-                </div>
-            </div>
-                break;
-            case 1:
-            return <div key={services[1].title} className={`slider-items ${index == 1 ? "slide-in" : "fade-out"} w-[100vw] h-[90svh] ${services[1].bg_image}`}>
-                <div className="slider-content w-full h-full  flex justify-center items-center">
-                    <div className="content-container w-11/12 opacity-100">
-                        <h1 className='text-7xl font-bold text-white'>{services[1].title}</h1>
-                        <p className='text-white lg:w-[465px] whitespace-pre-line pt-4'>{services[1].description}</p>
-                        <button className='bg-white text-black font-bold py-2 px-14 rounded mt-4'>
-                            Contact Us
-                        </button>
-                    </div>
-                </div>
-            </div>
-                break;
-            case 2:
-            return <div key={services[2].title} className={`slider-items ${index == 2 ? "slide-in" : "fade-out"} w-[100vw] h-[90svh] ${services[2].bg_image}`}>
-                <div className="slider-content w-full h-full  flex justify-center items-center">
-                    <div className="content-container w-11/12 opacity-100">
-                        <h1 className='text-7xl font-bold text-white'>{services[2].title}</h1>
-                        <p className='text-white lg:w-[465px] whitespace-pre-line  pt-4'>{services[2].description}</p>
-                        <button className='bg-white text-black font-bold py-2 px-14 rounded mt-4'>
-                            Contact Us
-                        </button>
-                    </div>
-                </div>
-            </div>
-            break;
-            default:
-               return  <div key={services[0].title} className={`slider-items w-[100vw] h-[90svh] ${services[0].bg_image}`}>
-                    <div className="slider-content w-full h-full flex justify-center items-center">
-                        <div className="content-container w-11/12 opacity-100">
-                            <h1 className='text-7xl font-bold text-white'>{services[0].title}</h1>
-                            <p className='text-white lg:w-[465px] whitespace-pre-line pt-4'>{services[0].description}</p>
-                            <button className='bg-white text-black font-bold py-2 px-14 rounded mt-4'>
-                                Contact Us
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                break;
-        }
-    }
-
-
-
   return (
     <div className="embla" ref={emblaRef}>
         <div className="embla__container">
@@ -113,7 +58,7 @@ function HomeCarousel() {
                     <div className="content-container w-11/12 opacity-100">
                         <h1 className='text-4xl lg:text-7xl font-bold text-white'>{service.title}</h1>
                         <p className='text-white lg:w-[465px] whitespace-pre-line pt-4'>{service.description}</p>
-                        <button className='bg-white text-black font-bold py-2 px-14 rounded mt-4'>
+                        <button onClick={() => setShowModal(true)} className='bg-white text-black font-bold py-2 px-14 rounded mt-4'>
                             Contact Us
                         </button>
                     </div>
@@ -122,6 +67,8 @@ function HomeCarousel() {
             ))
         }
         </div>
+        {showModal && <Modal onClose={() => setShowModal(false)} />}
+
     </div>
   )
 }

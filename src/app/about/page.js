@@ -70,7 +70,7 @@ const page = () => {
             </div>
           </div>
           <p className="text-black text-base font-medium">
-            Biographies of MaasH managers: the people we trust to guide our
+            Biographies of Maash managers: the people we trust to guide our
             company towards the future.
           </p>
           <div className="managers-profiles w-full flex flex-col gap-4 lg:flex-row justify-between items-center">

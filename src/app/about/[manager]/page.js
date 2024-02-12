@@ -31,7 +31,7 @@ const Manger = () => {
               </div>
               <div className="manager-profile-image w-full md:w-[30.903vw] h-[55.975vh] relative rounded-full overflow-hidden">
                 <Image
-                  src="/ibrahim.png"
+                  src="/Ibrahim.png"
                   alt="manager"
                   className="w-full object-contain"
                   fill
