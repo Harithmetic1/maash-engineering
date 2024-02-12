@@ -10,14 +10,17 @@ const EquipmentCard = ({ manufacturer, name, thumbnail, condition, id }) => {
     <Link href={`/equipments/${id}`}>
     <div className="featured-equipment-card flex flex-col gap-5 items-center justify-center rounded">
         <div className="featured-equipment-image py-14 md:w-full lg:w-80 w-full h-[306px] relative">
-            <Image
-            src={thumbnail}
-            alt='Caterpillar Excavator'
-            // layout="fill"
-            fill
-            className="object-cover rounded-xl"
-            loading='lazy'
-            />
+          {
+            thumbnail && (
+              <Image
+                src={thumbnail}
+                alt={name}
+                layout="fill"
+                className="object-cover rounded-lg"
+              />
+            )
+          }
+            
         </div>
         <div className="featured-equipment-name flex flex-col gap-3 items-start w-full lg:w-80 justify-center text-start">
           <div className='equipmwnt-title'>

@@ -14,12 +14,13 @@ const SearchResults = ({data}) => {
                         <Link href={`/equipments/${item?.id}`} key={item?.id}>
                         <div className="search-result-card cursor-pointer w-full flex items-center justify-start h-[100px] bg-[#F5F5F5] px-4 rounded-lg">
                   <div className="result-image-container w-[80px] h-[80px] relative">
-                    <Image
+                    {item?.thumbnail &&
+                      <Image
                       src={item?.thumbnail}
                       alt={item?.name}
                       fill
                       className="object-contain rounded-xl"
-                    />
+                    />}
                   </div>
                   <div className="flex w-full px-4 items-center justify-between">
                     <div className="result-text-container w-full h-full flex flex-col justify-center items-start gap-1">

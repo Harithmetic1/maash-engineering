@@ -1,8 +1,9 @@
 "use client";
-import { getEquipmentByID } from "@/api/api";
+
 import DownloadSpecs from "@/components/DownloadSpecs";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { useStore } from "@/store/store";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +11,7 @@ import Image from "next/image";
 import React, { useEffect, useId, useState } from "react";
 
 const Equipment = ({ params }) => {
+  const getEquipmentByID = useStore((state) => state.getEquipmentByID);
   const id = useId();
   const [equipmentDetails, setEquipmentDetails] = useState({});
   const { isLoading, isError, data, error } = useQuery({
@@ -22,11 +24,11 @@ const Equipment = ({ params }) => {
   });
 
   const thumbnailImages = () => {
-    if (data?.images) {
-      if (data?.images.length >= 3) {
-        return [data.images[1], data.images[2]];
+    if (data?.gallery) {
+      if (data?.gallery.length >= 3) {
+        return [data.gallery[1], data.gallery[2]];
       } else {
-        return data.images;
+        return data.gallery;
       }
     }
   };
@@ -41,7 +43,7 @@ const Equipment = ({ params }) => {
         details !== "description" &&
         details !== "condition" &&
         details !== "thumbnail" &&
-        details !== "images" &&
+        details !== "gallery" &&
         details !== "createdAt" &&
         details !== "updatedAt" &&
         details !== "rate" &&

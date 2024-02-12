@@ -5,16 +5,20 @@ import Navbar from "@/components/Navbar";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
-import {
-  getEquipmentByParam,
-  getEquipments,
-  searchEquipments,
-} from "@/api/api";
+// import {
+//   getEquipmentByParam,
+//   getEquipments,
+//   searchEquipments,
+// } from "@/api/api";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import SearchResults from "@/components/SearchResults";
+import { useStore } from "@/store/store";
 
 const Equipments = () => {
+  const { getEquipments, searchEquipments, getEquipmentByParam } = useStore(
+    (state) => state
+  );
   const [equipments, setEquipments] = useState([]);
   const [sortedEquipmentsTerm, setSortedEquipmentsTerm] = useState("");
   const [sorted, setSorted] = useState(false);
@@ -98,7 +102,7 @@ const Equipments = () => {
       setEquipments(filteredData);
       handleSortEquipments(sortedEquipmentsTerm, filteredData);
     }
-  }, [filteredData, sortedEquipmentsTerm]);
+  }, [filteredData, sortedEquipmentsTerm, data]);
 
   // State renderers
   const handleSearchedEquipments = () => {
