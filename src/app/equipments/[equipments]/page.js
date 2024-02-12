@@ -1,5 +1,4 @@
 "use client";
-
 import DownloadSpecs from "@/components/DownloadSpecs";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -95,13 +94,15 @@ const Equipment = ({ params }) => {
             <div className="equipment-catalogue-container flex flex-col justify-center items-center gap-2">
               <div className="equipment-catalogue flex justify-center items-center gap-2">
                 <div className="main-picture w-[95vw] h-[286px] lg:w-[40.972vw] lg:h-[59.119vh] relative">
-                  <Image
-                    src={data?.thumbnail}
-                    alt="CAT equipment"
-                    fill="responsive"
-                    className="object-cover rounded-tl-xl rounded-bl-xl"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 40vw"
-                  />
+                  {data?.thumbnail && (
+                    <Image
+                      src={data?.thumbnail}
+                      alt="CAT equipment"
+                      fill="responsive"
+                      className="object-cover rounded-tl-xl rounded-bl-xl"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 40vw"
+                    />
+                  )}
                 </div>
                 <div className="other-pictures flex flex-col items-center justify-center gap-2 lg:w-[14.931vw] h-fit relative">
                   {thumbnailImages()?.map((image, index) => (
@@ -109,13 +110,15 @@ const Equipment = ({ params }) => {
                       key={id}
                       className="lg:w-[14.931vw] lg:h-[29.057vh] relative"
                     >
-                      <Image
-                        src={image}
-                        alt="CAT equipment"
-                        fill="responsive"
-                        className="object-cover rounded-tr-xl"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 40vw"
-                      />
+                      {image && (
+                        <Image
+                          src={image}
+                          alt="CAT equipment"
+                          fill="responsive"
+                          className="object-cover rounded-tr-xl"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 40vw"
+                        />
+                      )}
                     </div>
                   ))}
                   {/* <div className="lg:w-[14.931vw] lg:h-[29.057vh] relative">
@@ -142,9 +145,11 @@ const Equipment = ({ params }) => {
                 <DownloadSpecs />
               </div>
               <div className="view-all hidden w-full lg:flex items-center justify-end ">
-                <button className="bg-white border border-zinc-700 lg:w-[14.931vw] shadow text-zinc-700 rounded px-4 py-2">
-                  View all photos
-                </button>
+                {data?.gallery && data?.gallery.length > 2 && (
+                  <button className="bg-white border border-zinc-700 lg:w-[14.931vw] shadow text-zinc-700 rounded px-4 py-2">
+                    View all photos
+                  </button>
+                )}
               </div>
               <div className="equipment-details px-5 lg:px-0 py-2 lg:py-2 w-full flex flex-col justify-between  items-start gap-4 lg:gap-12">
                 <div className="equipment-name-condition">
