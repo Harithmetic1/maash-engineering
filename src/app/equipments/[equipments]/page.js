@@ -175,7 +175,7 @@ const Equipment = ({ params }) => {
             <div className="equipment-price-container flex flex-col h-full justify-start items-start gap-2 w-full">
               <div className="price w-full flex justify-between lg:justify-start items-center">
                 <h1 className="lg:hidden flex justify-center items-baseline text-[27px] font-bold">
-                  ₦55,000
+                  ₦{data?.rate}
                   <span className="text-xs font-normal">Day</span>
                 </h1>
                 <button className="bg-neutral-800 py-3 lg:hidden rounded justify-center items-center gap-2.5 inline-flex w-[168px] lg:w-[21.181vw] cursor-pointer">
@@ -191,7 +191,7 @@ const Equipment = ({ params }) => {
               </div>
               <div className="specifications flex flex-col justify-center items-start gap-3">
                 <h1 className="lg:flex hidden text-[27px] items-baseline font-bold">
-                  ₦55,000
+                  ₦{data?.rate}
                   <span className="text-xs font-normal">/Day</span>
                 </h1>
                 {equipmentDetails &&
