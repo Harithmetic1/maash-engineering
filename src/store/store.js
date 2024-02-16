@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const useStore = create(
   persist(
@@ -107,6 +108,28 @@ export const useStore = create(
         } catch (error) {
           throw new Error(
             `Failed to delete equipment with id: ${id}. ${error.response.data.message}`
+          );
+        }
+      },
+      addEquipment: async (data) => {
+        try {
+          const api = get().api;
+          // Send formdata to the server
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          };
+          const response = await api.post("/equipment/", data, header);
+          toast.success("Equipment added successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(
+            `Failed to add equipment: ${error.response.data.message}`
+          );
+          throw new Error(
+            `Failed to add equipment. ${error.response.data.message}`
           );
         }
       },

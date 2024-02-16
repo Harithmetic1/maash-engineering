@@ -1,5 +1,4 @@
 "use client";
-
 import EquipmentCard from "@/components/EquipmentCard";
 import Footer from "@/components/Footer";
 import HomeCarousel from "@/components/HomeCarousel";

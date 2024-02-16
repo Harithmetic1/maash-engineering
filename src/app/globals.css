@@ -277,3 +277,8 @@ body {
   cursor: pointer;
   background-color: #ccc;
 }
+
+form label{
+  font-size: 12px !important;
+  line-height: 14.63px;
+}

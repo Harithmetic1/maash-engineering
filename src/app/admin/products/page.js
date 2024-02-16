@@ -7,6 +7,7 @@ import { faEdit, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Products = () => {
@@ -56,6 +57,14 @@ const Products = () => {
               className="border-none outline-none bg-transparent w-full"
               placeholder="Search"
             />
+          </div>
+          <div className="flex justify-end items-center">
+            <Link
+              href={"/admin/add"}
+              className="add-product-btn text-admin-primary bg-admin-secondary py-2 px-4 rounded-3xl"
+            >
+              Add Product
+            </Link>
           </div>
           <div className="products-table w-full h-fit mt-10 bg-admin-primary rounded-3xl">
             <table className="w-full h-fit">
