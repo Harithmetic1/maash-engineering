@@ -29,7 +29,7 @@ const Notfound = () => {
           </a>
         </p>
         <h1 className="text-5xl font-bold text-center h-full">
-          Oops!! That page doesn't exist,{" "}
+          Oops!! This page does not exist,{" "}
           <span>
             <Link href="/" className="text-blue-600 underline">
               Go to Homepage.
