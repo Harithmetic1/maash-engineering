@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDisclosure } from "@chakra-ui/react";
 
 export const useStore = create(
   persist(
@@ -40,17 +41,19 @@ export const useStore = create(
           }));
           return response.data;
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           throw new Error(`Failed to login: ${error.response.data.message}`);
         }
+      },
+      logout: () => {
+        set({ token: null, user: null });
       },
       getEquipments: async () => {
         try {
           const api = useStore.getState().api;
-          console.log("Fetching equipments...", get());
+          // console.log("Fetching equipments...");
           const response = await api.get("/equipment/");
-          console.log(response);
-          return response.data.result;
+          return response?.data?.result;
         } catch (error) {
           throw new Error(
             `Failed to fetch equipments. ${error.response.data.message}`
@@ -62,7 +65,7 @@ export const useStore = create(
           // console.log(`Fetching equipment with id: ${id}`);
           const api = useStore.getState().api;
           const response = await api.get(`/equipment/${id}`);
-          console.log(useStore.getState().token);
+          // console.log(useStore.getState().token);
           return response.data;
         } catch (error) {
           // console.log(error);
@@ -103,9 +106,19 @@ export const useStore = create(
       deleteEquipment: async (id) => {
         try {
           const api = get().api;
-          const response = await api.delete(`/equipment/${id}`);
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          };
+          const response = await api.delete(`/equipment/${id}`, header);
+          toast.success("Equipment deleted successfully");
           return response.data;
         } catch (error) {
+          toast.error(
+            `Failed to delete equipment with id: ${id}. ${error.response.data.message} Please log in and try again.`
+          );
           throw new Error(
             `Failed to delete equipment with id: ${id}. ${error.response.data.message}`
           );
@@ -132,6 +145,45 @@ export const useStore = create(
             `Failed to add equipment. ${error.response.data.message}`
           );
         }
+      },
+      editEquipment: async (equipmentId, data) => {
+        try {
+          const api = get().api;
+          // Send formdata to the server
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          };
+          const response = await api.put(
+            `/equipment/${equipmentId}`,
+            data,
+            header
+          );
+          toast.success("Equipment edited successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(
+            `Failed to edit equipment: ${error.response.data.message}`
+          );
+          throw new Error(
+            `Failed to edit equipment. ${error.response.data.message}`
+          );
+        }
+      },
+      deleteModal: {
+        isOpen: false,
+      },
+      openDeleteModal: () => {
+        set((state) => ({
+          deleteModal: { ...state.deleteModal, isOpen: true },
+        }));
+      },
+      closeDeleteModal: () => {
+        set((state) => ({
+          deleteModal: { ...state.deleteModal, isOpen: false },
+        }));
       },
     }),
     {

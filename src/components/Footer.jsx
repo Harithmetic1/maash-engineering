@@ -7,6 +7,7 @@ import {
   } from "@fortawesome/free-brands-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import Link from 'next/link';
 
 
 const Footer = () => {
@@ -19,10 +20,12 @@ const Footer = () => {
                 About Us
               </h3> */}
               <ul className="text-sm flex flex-col items-start justify-center">
+                <li className="pb-2"><Link href='/admin'>
+                Admin Login
+                </Link></li>
                 <li className="pb-2">Company</li>
                 <li className="pb-2">About Us</li>
                 <li className="pb-2">Careers</li>
-                <li className="pb-2">FAQ&#39;S</li>
                 <li className="pb-2">Team</li>
                 <li className="pb-2">Contact Us</li>
               </ul>
