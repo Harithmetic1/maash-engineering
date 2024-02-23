@@ -1,6 +1,7 @@
+"use client";
 import AdminNavbar from "@/components/admin/AdminNavbar";
 import SideBar from "@/components/admin/SideBar";
-import React from "react";
+import React, { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useStore } from "@/store/store";
@@ -11,9 +12,12 @@ const AdminLayout = ({ children }) => {
 
   const router = useRouter();
 
-  if (!user) {
-    router?.push("/admin");
-  }
+  useEffect(() => {
+    if (!user) {
+      toast.error("Please login to access the admin panel");
+      router?.push("/admin");
+    }
+  }, [user]);
 
   return (
     <div className="flex justify-normal items-center">
