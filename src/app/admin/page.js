@@ -56,11 +56,13 @@ const Login = () => {
             type="text"
             placeholder="Username"
             className="p-2 border border-gray-300"
+            autoComplete="username"
           />
           <input
             type="password"
             placeholder="Password"
             className="p-2 border border-gray-300"
+            autoComplete="current-password"
           />
           <button className="bg-black text-white font-bold py-2 flex justify-center items-center">
             Login{" "}

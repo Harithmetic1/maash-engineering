@@ -195,14 +195,19 @@ const Equipment = ({ params }) => {
                   <span className="text-xs font-normal">/Day</span>
                 </h1>
                 {equipmentDetails &&
-                  Object.keys(equipmentDetails).map((detail, index) => (
-                    <div key={index} className="specification">
-                      <p className="text-zinc-500 text-xs">{detail}</p>
-                      <p className="text-black text-base">
-                        {equipmentDetails[detail]}
-                      </p>
-                    </div>
-                  ))}
+                  Object.keys(equipmentDetails).map((detail, index) => {
+                    if (equipmentDetails[detail] == "") {
+                      return;
+                    }
+                    return (
+                      <div key={index} className="specification">
+                        <p className="text-zinc-500 text-xs">{detail}</p>
+                        <p className="text-black text-base">
+                          {equipmentDetails[detail]}
+                        </p>
+                      </div>
+                    );
+                  })}
               </div>
               <div className="call-to-action-btn hidden lg:flex pt-7 border-t w-full border-neutral-200">
                 <button className="bg-neutral-800 py-3 rounded justify-center items-center gap-2.5 hidden lg:inline-flex w-full lg:w-[21.181vw] cursor-pointer">

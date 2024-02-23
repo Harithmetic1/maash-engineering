@@ -1,7 +1,7 @@
-import { m } from 'framer-motion'
 import React from 'react'
 
-const EditInputField = ({register, error, name, label, inputType, multiple = true, required = true}) => {
+const InputField = ({register, error, name, label, inputType, value, multiple = true, required = true}) => {
+
 
     const handleInputType = () => {
         if(inputType === "textarea") {
@@ -10,8 +10,8 @@ const EditInputField = ({register, error, name, label, inputType, multiple = tru
                     type="text"
                     placeholder="Equipment Description"
                     className="p-2 border border-gray-300 w-full"
-                    {...register(name, { required: required })}
-                    aria-invalid={error ? "true" : "false"}
+                    {...register(name)}
+                    defaultValue={value}
                 />
             )
         } else if (inputType === "select"){
@@ -20,8 +20,8 @@ const EditInputField = ({register, error, name, label, inputType, multiple = tru
                     type="text"
                     placeholder={label}
                     className="p-2 border border-gray-300 w-full"
-                    {...register(name, { required: required })}
-                    aria-invalid={error ? "true" : "false"}
+                    {...register(name)}
+                    defaultValue={value}
                 >
                     <option value="Available">Available</option>
                     <option value="Unavailable">Unavailable</option>
@@ -38,7 +38,7 @@ const EditInputField = ({register, error, name, label, inputType, multiple = tru
                     accept="image/*"
                     max={5}
                     multiple = {multiple}
-                    {...register(name, { required: required, max: 5, validate: (value) => value.length <= 5 })}
+                    {...register(name, {max: 5, validate: (value) => value.length <= 5 })}
                   />
             )
         }
@@ -48,8 +48,8 @@ const EditInputField = ({register, error, name, label, inputType, multiple = tru
                     type="text"
                     placeholder={label}
                     className="p-2 border border-gray-300 w-full"
-                    {...register(name, { required: required })}
-                    aria-invalid={error ? "true" : "false"}
+                    {...register(name)}
+                    defaultValue={value}
                 />
             )
         }
@@ -72,4 +72,4 @@ const EditInputField = ({register, error, name, label, inputType, multiple = tru
   )
 }
 
-export default EditInputField;
+export default InputField;

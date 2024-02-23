@@ -17,7 +17,7 @@ export default function Home() {
   });
 
   const handleFetchFeaturedEquipments = () => {
-    console.log(`data: ${data && data[0]}`);
+    // console.log(`data: ${data && data[0]}`);
     if (isPending) {
       return (
         <div className="flex justify-center items-center w-full h-full animate-spin py-11">
@@ -26,7 +26,7 @@ export default function Home() {
       );
     } else if (isError) {
       return (
-        <div className="flex justify-center items-center w-full h-full py-11">
+        <div className="error flex justify-center items-center w-full h-full py-11">
           <p className="text-lg font-bold text-[#363636]">{error.message}</p>
         </div>
       );

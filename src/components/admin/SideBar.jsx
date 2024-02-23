@@ -3,8 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
+import { useStore } from '@/store/store';
+import { useRouter } from 'next/navigation';
 
 const SideBar = () => {
+    const router = useRouter();
+    const { logout } = useStore((state) => state);
+    const handleLogOut = () => {
+        logout();
+        router.push('/admin');
+    }
   return (
     <div className='sidebar-container bg-admin-primary h-[100vh] w-80 flex flex-col justify-between items-center'>
         <div className='sidebar-logo w-full p-6'>
@@ -40,9 +48,9 @@ const SideBar = () => {
             </ul>
         </div>
         <div className='sidebar-logout w-full'>
-            <Link href='/admin' className='flex p-6 justify-start items-center text-admin-secondary gap-1'>
+            <div className='flex p-6 justify-start items-center text-admin-secondary gap-1 cursor-pointer' onClick={handleLogOut}>
                 <FontAwesomeIcon icon={faSignOutAlt} width={15} height={15} /> Sign out
-            </Link>
+            </div>
         </div>
     </div>
   )
