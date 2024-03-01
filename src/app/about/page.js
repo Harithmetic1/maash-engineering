@@ -1,3 +1,4 @@
+import AboutManagers from "@/components/AboutManagers";
 import Footer from "@/components/Footer";
 import ManagerProfile from "@/components/ManagerProfile";
 import Navbar from "@/components/Navbar";
@@ -56,7 +57,7 @@ const page = () => {
           </div>
         </div>
       </section>
-      <section className="w-full h-fit lg:h-[90svh] px-4 lg:px-20 pt-10 lg:m-auto pb-36 flex justify-center items-start">
+      <section className="w-full h-fit lg:h-[60svh] px-4 lg:px-20 pt-10 lg:m-auto pb-4 flex justify-center items-start">
         <div className="about-page-content h-full flex flex-col justify-start items-start gap-11 w-full">
           <div className="section-headers flex justify-between items-center w-full">
             <h4 className="text-lg sm:text-lg md:text-2xl border-b-neutral-800 border-b-[1px] pb-2 w-fit text-center text-[26px] font-bold text-neutral-800">
@@ -73,16 +74,7 @@ const page = () => {
             Biographies of Maash managers: the people we trust to guide our
             company towards the future.
           </p>
-          <div className="managers-profiles w-full flex flex-col gap-4 lg:flex-row justify-between items-center">
-            {
-              // Managers Profile
-              Array.from({ length: 4 }).map((_, i) => (
-                <Link href="/about/[manager]" as="/about/manager" key={i}>
-                  <ManagerProfile key={i} />
-                </Link>
-              ))
-            }
-          </div>
+          <AboutManagers />
         </div>
       </section>
       <section className="mission-vision-location w-full h-fit lg:h-[90svh] flex justify-center items-start">

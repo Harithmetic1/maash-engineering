@@ -172,6 +172,131 @@ export const useStore = create(
           );
         }
       },
+      deleteManager: async (id) => {
+        try {
+          const api = get().api;
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          };
+          const response = await api.delete(`/managers/${id}`, header);
+          toast.success("Manager deleted successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(
+            `Failed to delete manager with id: ${id}. ${error.response.data.message} Please log in and try again.`
+          );
+          throw new Error(
+            `Failed to delete manager with id: ${id}. ${error.response.data.message}`
+          );
+        }
+      },
+      addManager: async (data) => {
+        try {
+          const api = get().api;
+          // Send formdata to the server
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          };
+          const response = await api.post("/managers/", data, header);
+          toast.success("Manager added successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(`Failed to add manager: ${error.response.data.message}`);
+          throw new Error(
+            `Failed to add manager. ${error.response.data.message}`
+          );
+        }
+      },
+      getManagers: async () => {
+        try {
+          const api = get().api;
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+            },
+          };
+          // console.log("Fetching managers...");
+          const response = await api.get("/managers/", header);
+          return response?.data;
+        } catch (error) {
+          toast.error(
+            `Failed to fetch managers. ${error.response.data.message} Please log in and try again.`
+          );
+          throw new Error(
+            `Failed to fetch managers. ${error.response.data.message}`
+          );
+        }
+      },
+      getManagerByID: async (id) => {
+        try {
+          const api = get().api;
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+            },
+          };
+          // console.log("Fetching manager...");
+          const response = await api.get(`/managers/${id}`, header);
+          return response?.data;
+        } catch (error) {
+          toast.error(
+            `Failed to fetch manager. ${error.response.data.message} Please log in and try again.`
+          );
+          throw new Error(
+            `Failed to fetch manager. ${error.response.data.message}`
+          );
+        }
+      },
+      editManagers: async (managerId, data) => {
+        try {
+          const api = get().api;
+          // Send formdata to the server
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          };
+          const response = await api.put(
+            `/managers/${managerId}`,
+            data,
+            header
+          );
+          toast.success("Manager edited successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(`Failed to edit manager: ${error.response.data.message}`);
+          throw new Error(
+            `Failed to edit manager. ${error.response.data.message}`
+          );
+        }
+      },
+      getUsers: async () => {
+        try {
+          const api = get().api;
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+            },
+          };
+          // console.log("Fetching users...");
+          const response = await api.get("/user/", header);
+          return response?.data;
+        } catch (error) {
+          toast.error(
+            `Failed to fetch users. ${error.response.data.message} Please log in and try again.`
+          );
+          throw new Error(
+            `Failed to fetch users. ${error.response.data.message}`
+          );
+        }
+      },
       deleteModal: {
         isOpen: false,
       },
@@ -183,6 +308,32 @@ export const useStore = create(
       closeDeleteModal: () => {
         set((state) => ({
           deleteModal: { ...state.deleteModal, isOpen: false },
+        }));
+      },
+      managerModal: {
+        isOpen: false,
+      },
+      openManagerModal: () => {
+        set((state) => ({
+          managerModal: { ...state.managerModal, isOpen: true },
+        }));
+      },
+      closeManagerModal: () => {
+        set((state) => ({
+          managerModal: { ...state.managerModal, isOpen: false },
+        }));
+      },
+      editManagerModal: {
+        isOpen: false,
+      },
+      openEditManagerModal: () => {
+        set((state) => ({
+          editManagerModal: { ...state.editManagerModal, isOpen: true },
+        }));
+      },
+      closeEditManagerModal: () => {
+        set((state) => ({
+          editManagerModal: { ...state.editManagerModal, isOpen: false },
         }));
       },
     }),

@@ -1,9 +1,8 @@
 "use client";
 import AdminLayout from "@/app/adminLayout";
-import EditInputField from "@/components/admin/EditInputField";
+import InputField from "@/components/admin/EditInputField";
 import { useStore } from "@/store/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { EDGE_RUNTIME_WEBPACK } from "next/dist/shared/lib/constants";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -75,35 +74,35 @@ const Edit = ({ params }) => {
           <div className="flex justify-center items-center gap-4">
             <div className="flex w-full gap-4">
               <div className="flex flex-col justify-start items-center gap-2 w-2/4">
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.name}
                   name="name"
                   label="Name"
                   value={data?.name}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.serial}
                   name="serial"
                   label="Serial"
                   value={data?.serial}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.model}
                   name="model"
                   label="Model"
                   value={data?.model}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.capacity}
                   name="capacity"
                   label="Capacity"
                   value={data?.capacity}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.engineCapacity}
                   name="engineCapacity"
@@ -111,7 +110,7 @@ const Edit = ({ params }) => {
                   required={false}
                   value={data?.engineCapacity}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.bucketCapacity}
                   name="bucketCapacity"
@@ -119,14 +118,14 @@ const Edit = ({ params }) => {
                   required={false}
                   value={data?.bucketCapacity}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.condition}
                   name="condition"
                   label="Condition"
                   value={data?.condition}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.description}
                   name="description"
@@ -137,28 +136,28 @@ const Edit = ({ params }) => {
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.manufacturer}
                   name="manufacturer"
                   label="Manufacturer"
                   value={data?.manufacturer}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.rate}
                   name="rate"
                   label="Rate"
                   value={data?.rate}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.year}
                   name="year"
                   label="Year"
                   value={data?.year}
                 />
-                <EditInputField
+                <InputField
                   register={register}
                   error={errors.status}
                   name="status"
@@ -177,7 +176,7 @@ const Edit = ({ params }) => {
                     />
                   )}
                 </div>
-                <EditInputField
+                <InputField
                   register={register}
                   name="thumbnail"
                   label="Edit Thumbnail"
@@ -199,7 +198,7 @@ const Edit = ({ params }) => {
                     ))}
                   </div>
                 </div>
-                <EditInputField
+                <InputField
                   register={register}
                   name="gallery"
                   label="Edit gallery"

@@ -1,14 +1,14 @@
 import { m } from 'framer-motion'
 import React from 'react'
 
-const EditInputField = ({register, error, name, label, inputType, multiple = true, required = true}) => {
+const InputField = ({register, error, name, label, inputType, multiple = true, required = true, placeholder="Equipment Description"}) => {
 
     const handleInputType = () => {
         if(inputType === "textarea") {
             return (
                 <textarea
                     type="text"
-                    placeholder="Equipment Description"
+                    placeholder={placeholder}
                     className="p-2 border border-gray-300 w-full"
                     {...register(name, { required: required })}
                     aria-invalid={error ? "true" : "false"}
@@ -72,4 +72,4 @@ const EditInputField = ({register, error, name, label, inputType, multiple = tru
   )
 }
 
-export default EditInputField;
+export default InputField;

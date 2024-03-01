@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InputField = ({register, error, name, label, inputType, value, multiple = true, required = true}) => {
+const EditInputField = ({register, error, name, label, inputType, value, multiple = true, required = true}) => {
 
 
     const handleInputType = () => {
@@ -72,4 +72,4 @@ const InputField = ({register, error, name, label, inputType, value, multiple = 
   )
 }
 
-export default InputField;
+export default EditInputField;
