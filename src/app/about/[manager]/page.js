@@ -1,12 +1,27 @@
+"use client";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import React from "react";
+import { useStore } from "@/store/store";
+import { useQuery } from "@tanstack/react-query";
 
 // import backArrow from "..//public/back-arrow.svg";
 import Image from "next/image";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Manger = () => {
+const Manger = ({ params }) => {
+  const { getManagerByID } = useStore((state) => state);
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["manager", params.manager],
+    queryFn: async () => {
+      const data = await getManagerByID(params.manager);
+      return data;
+    },
+  });
+
   return (
     <main>
       <Navbar />
@@ -29,39 +44,41 @@ const Manger = () => {
                   />
                 </Link>
               </div>
-              <div className="manager-profile-image w-full md:w-[30.903vw] h-[55.975vh] relative rounded-full overflow-hidden">
-                <Image
-                  src="/Ibrahim.png"
-                  alt="manager"
-                  className="w-full object-contain"
-                  fill
-                />
+              <div className="manager-profile-image w-full md:w-[30.903vw] h-[55.975vh] relative rounded-lg overflow-hidden">
+                {
+                  // Profile Image
+                  data?.profileImage ? (
+                    <Image
+                      src={data?.profileImage}
+                      alt="manager"
+                      className="w-full object-contain"
+                      fill
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="rounded-[50%] p-6 border-black text-6xl border-2"
+                    />
+                  )
+                }
               </div>
               <div className="user-details text-white flex flex-col md:hidden text-center">
-                <h1 className="text-base font-bold">IBRAHIM, AMINU BAGUDU</h1>
-                <p className="text-[11px] font-bold pb-10">
-                  Chief Executive Officer
-                </p>
+                <h1 className="text-base font-bold">
+                  {data?.firstName}, {data?.lastName}
+                </h1>
+                <p className="text-[11px] font-bold pb-10">{data?.jobTitle}</p>
               </div>
             </div>
 
             <div className="manager-profile-details px-5 w-full md:w-[50vw] flex flex-col justify-center items-start gap-2 md:ml-10">
               <h1 className="text-2xl md:flex hidden font-bold text-[#363636]">
-                IBRAHIM, AMINU BAGUDU
+                {data?.firstName}, {data?.lastName}
               </h1>
               <p className="text-lg md:flex hidden font-bold text-[#363636] pb-10">
-                Chief Executive Officer
+                {data?.jobTitle}
               </p>
               <p className="text-[11px] md:text-lg font-medium pt-6 text-[#363636]">
-                Ibrahim holds an MSc in Oil & Gas Engineering at the prestigious
-                Robert Gordon University Scotland and HND in Mechanical/Marine
-                Engineering at St. Lawrence College of Applied Arts &
-                Technology, Canada. He joined NNPC in July 1984 as a Graduate
-                Trainee under the NNPC Petrochemical PH1 Project. He has more
-                than 34 years of oil and gas industry experience covering the
-                maintenance of rotating machinery, Gas Development projects,
-                strategic planning and business development, Project Management
-                and Facility installations in Oil and Gas Operations.
+                {data?.bio}
               </p>
             </div>
           </div>

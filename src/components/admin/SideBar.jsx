@@ -26,7 +26,7 @@ const SideBar = () => {
                     </Link>
                 </li>
                 <li className='p-6 w-full'>
-                    <Link href='/admin/manager' className='flex justify-start items-center gap-2'>
+                    <Link href='/admin/managers' className='flex justify-start items-center gap-2'>
                         <Image src='/managers.svg' alt='Managers-icon' width={24} height={24} /> Managers
                     </Link>
                 </li>
