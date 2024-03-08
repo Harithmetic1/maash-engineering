@@ -8,16 +8,19 @@ import { useStore } from "@/store/store";
 import { useRouter } from "next/navigation";
 
 const AdminLayout = ({ children }) => {
-  const { user } = useStore((state) => state);
+  // const { user } = useStore((state) => state);
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
-      toast.error("Please login to access the admin panel");
-      router?.push("/admin");
+    if (localStorage.getItem("maashStore")) {
+      const user = JSON.parse(localStorage.getItem("maashStore"));
+      if (!user) {
+        toast.error("Please login to access the admin panel");
+        router?.push("/admin");
+      }
     }
-  }, [user]);
+  }, []);
 
   return (
     <div className="flex justify-normal items-center">

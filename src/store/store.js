@@ -277,6 +277,24 @@ export const useStore = create(
           );
         }
       },
+      registerUser: async (data) => {
+        try {
+          const api = get().api;
+          // Send formdata to the server
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "application/json",
+            },
+          };
+          const response = await api.post("/user/register", data, header);
+          toast.success("User added successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(`Failed to add user: ${error.response.data.message}`);
+          throw new Error(`Failed to add user. ${error.response.data.message}`);
+        }
+      },
       getUsers: async () => {
         try {
           const api = get().api;
@@ -294,6 +312,71 @@ export const useStore = create(
           );
           throw new Error(
             `Failed to fetch users. ${error.response.data.message}`
+          );
+        }
+      },
+      deleteUser: async (id) => {
+        try {
+          const api = get().api;
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          };
+          const response = await api.delete(`/user/${id}`, header);
+          toast.success("User deleted successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(
+            `Failed to delete user with id: ${id}. ${error.response.data.message} Please log in and try again.`
+          );
+          throw new Error(
+            `Failed to delete user with id: ${id}. ${error.response.data.message}`
+          );
+        }
+      },
+      editUser: async (userId, data) => {
+        try {
+          const api = get().api;
+          // Send formdata to the server
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "application/json",
+            },
+          };
+          const response = await api.put(
+            `/user/${userId}/change-role`,
+            data,
+            header
+          );
+          toast.success("User edited successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(`Failed to edit user: ${error.response.data.message}`);
+          throw new Error(
+            `Failed to edit user. ${error.response.data.message}`
+          );
+        }
+      },
+      editProfile: async (data) => {
+        try {
+          const api = get().api;
+          // Send formdata to the server
+          const header = {
+            headers: {
+              Authorization: `Bearer ${get()?.token}`,
+              "Content-Type": "application/json",
+            },
+          };
+          const response = await api.put(`/user/update`, data, header);
+          toast.success("Profile edited successfully");
+          return response.data;
+        } catch (error) {
+          toast.error(`Failed to edit profile: ${error.response.data.message}`);
+          throw new Error(
+            `Failed to edit profile. ${error.response.data.message}`
           );
         }
       },
@@ -334,6 +417,19 @@ export const useStore = create(
       closeEditManagerModal: () => {
         set((state) => ({
           editManagerModal: { ...state.editManagerModal, isOpen: false },
+        }));
+      },
+      addUserModal: {
+        isOpen: false,
+      },
+      openAddUserModal: () => {
+        set((state) => ({
+          addUserModal: { ...state.addUserModal, isOpen: true },
+        }));
+      },
+      closeAddUserModal: () => {
+        set((state) => ({
+          addUserModal: { ...state.addUserModal, isOpen: false },
         }));
       },
     }),

@@ -5,6 +5,7 @@ import { useStore } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Image from "next/image";
+import AddUserButton from "@/components/admin/AddUserButton";
 
 const AdminUser = () => {
   const { getUsers } = useStore((state) => state);
@@ -32,9 +33,11 @@ const AdminUser = () => {
         </tr>
       );
     } else if (data.length > 0) {
-      return data?.map((user, index) => (
-        <UserRow {...user} index={index} key={user?.id} />
-      ));
+      return data
+        ?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+        .map((user, index) => (
+          <UserRow {...user} index={index} key={user?.id} />
+        ));
     } else if (data.length === 0) {
       return (
         <tr className="flex justify-center items-center w-full h-full py-11">
@@ -54,9 +57,7 @@ const AdminUser = () => {
         <div className="w-11/12 h-[70svh]">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-admin-secondary">Users</h1>
-            <button className="bg-admin-secondary text-white px-3 py-2 rounded-md">
-              Add User
-            </button>
+            <AddUserButton />
           </div>
           <div className="user-table-container mt-10 bg-admin-primary rounded-3xl">
             <table className="w-full h-fit">
