@@ -69,7 +69,7 @@ const Equipment = ({ params }) => {
     }
   }, [data]);
 
-  const whatsAppNumber = "2347014357004";
+  const whatsAppNumber = "+2348033353851";
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
@@ -212,7 +212,7 @@ const Equipment = ({ params }) => {
               <div className="call-to-action-btn hidden lg:flex pt-7 border-t w-full border-neutral-200">
                 <button className="bg-neutral-800 py-3 rounded justify-center items-center gap-2.5 hidden lg:inline-flex w-full lg:w-[21.181vw] cursor-pointer">
                   <a
-                    href={`https://wa.me/${whatsAppNumber}?text=Hello%20there%2C%20I%20am%20interested%20in%20your%20equipment%20for%20rent`}
+                    href={`https://wa.me/${whatsAppNumber}?text=Hello%20Maash%20Admin%2C%20I%20am%20interested%20in%20the%20${data?.manufacturer}%20${data?.name}%20equipment%20for%20rent`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white w-full cursor-pointer"
