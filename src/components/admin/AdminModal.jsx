@@ -9,7 +9,7 @@ import {
 
 const AdminModal = ({ children, isOpen, onClose }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal size={"xl"} isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent>{children}</ModalContent>
     </Modal>
