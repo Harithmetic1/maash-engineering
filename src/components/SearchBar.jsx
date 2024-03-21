@@ -50,25 +50,25 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search-bar flex w-[90vw] md:w-[40vw] relative bg-white justify-between items-center">
+    <div className="search-bar flex w-[90vw] md:w-[40vw] relative bg-admin-primary justify-between items-center rounded">
       <div className="icon-search w-full flex gap-14 justify-center items-center px-5 py-4">
         <div className="search-icon">
           <FontAwesomeIcon width={24} height={24} icon={faSearch} />
         </div>
-        <div className="search-input w-full ">
+        <div className="search-input w-full">
           <input
             type="text"
-            className="outline-none w-full"
+            className="outline-none w-full bg-admin-primary"
             placeholder="Find Equipment"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
-      <div className="search-button w-32 h-full">
+      {/* <div className="search-button w-32 h-full">
         <button className="bg-black text-white px-5 py-4 w-full h-full">
           Search
         </button>
-      </div>
+      </div> */}
       {handleSearchedEquipments()}
     </div>
   );

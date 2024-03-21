@@ -15,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "./SearchBar";
 
-function Navbar() {
+function Navbar({ showSearchIcon = true }) {
   const [showNav, setShowNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -143,12 +143,14 @@ function Navbar() {
               height={60}
             />
           </div>
-          <div className="search-icon" onClick={handleShowSearch}>
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="text-black text-[24px] text-center"
-            />
-          </div>
+          {showSearchIcon && (
+            <div className="search-icon" onClick={handleShowSearch}>
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="text-black text-[24px] text-center"
+              />
+            </div>
+          )}
         </div>
         <div
           className={`nav-links z-0 ${
