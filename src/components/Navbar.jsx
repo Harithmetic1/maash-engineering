@@ -13,6 +13,7 @@ import {
   faLocationDot,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "./SearchBar";
 
 function Navbar() {
   const [showNav, setShowNav] = useState(false);
@@ -182,18 +183,7 @@ function Navbar() {
             showSearch ? "reveal-search" : "hide-search"
           } w-full flex flex-col justify-center gap-4 items-center`}
         >
-          <div className="search-bar-input w-full">
-            <input
-              type="text"
-              placeholder="Search for equipments"
-              className="w-full h-full p-3 rounded border border-black outline-none"
-            />
-          </div>
-          <div className="search-bar-button w-full">
-            <button className="bg-black text-white font-bold py-2 px-3 rounded">
-              Search
-            </button>
-          </div>
+          <SearchBar />
         </div>
       </nav>
     </>

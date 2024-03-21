@@ -69,14 +69,14 @@ const Equipment = ({ params }) => {
     }
   }, [data]);
 
-  const whatsAppNumber = "2347014357004";
+  const whatsAppNumber = "+2348033353851";
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
       <Navbar />
-      <div className="w-full hidden lg:flex">
+      {/* <div className="w-full hidden lg:flex">
         <DownloadSpecs />
-      </div>
+      </div> */}
       {isLoading ? (
         <div className="h-screen">
           <div className="flex justify-center items-center w-full h-full animate-spin">
@@ -141,9 +141,9 @@ const Equipment = ({ params }) => {
                 </div> */}
                 </div>
               </div>
-              <div className="w-[100vw] flex lg:hidden">
+              {/* <div className="w-[100vw] flex lg:hidden">
                 <DownloadSpecs />
-              </div>
+              </div> */}
               <div className="view-all hidden w-full lg:flex items-center justify-end ">
                 {data?.gallery && data?.gallery.length > 2 && (
                   <button className="bg-white border border-zinc-700 lg:w-[14.931vw] shadow text-zinc-700 rounded px-4 py-2">
@@ -178,7 +178,10 @@ const Equipment = ({ params }) => {
                   ₦{data?.rate}
                   <span className="text-xs font-normal">Day</span>
                 </h1>
-                <button className="bg-neutral-800 py-3 lg:hidden rounded justify-center items-center gap-2.5 inline-flex w-[168px] lg:w-[21.181vw] cursor-pointer">
+                <button
+                  className="bg-neutral-800 py-3 lg:hidden rounded justify-center items-center gap-2.5 inline-flex w-[168px] lg:w-[21.181vw] cursor-pointer"
+                  disabled={data?.availability == "Unavailable"}
+                >
                   <a
                     href={`https://wa.me/${whatsAppNumber}?text=Hello%20there%2C%20I%20am%20interested%20in%20your%20equipment%20for%20rent`}
                     target="_blank"
@@ -212,7 +215,7 @@ const Equipment = ({ params }) => {
               <div className="call-to-action-btn hidden lg:flex pt-7 border-t w-full border-neutral-200">
                 <button className="bg-neutral-800 py-3 rounded justify-center items-center gap-2.5 hidden lg:inline-flex w-full lg:w-[21.181vw] cursor-pointer">
                   <a
-                    href={`https://wa.me/${whatsAppNumber}?text=Hello%20there%2C%20I%20am%20interested%20in%20your%20equipment%20for%20rent`}
+                    href={`https://wa.me/${whatsAppNumber}?text=Hello%20Maash%20Admin%2C%20I%20am%20interested%20in%20the%20${data?.manufacturer}%20${data?.name}%20equipment%20for%20rent`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white w-full cursor-pointer"

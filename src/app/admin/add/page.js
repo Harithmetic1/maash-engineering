@@ -97,6 +97,7 @@ const Page = () => {
                   register={register}
                   error={errors.condition}
                   name="condition"
+                  inputType={"conditionSelect"}
                   label="Condition"
                 />
                 <InputField

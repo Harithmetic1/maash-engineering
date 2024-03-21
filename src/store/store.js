@@ -60,6 +60,18 @@ export const useStore = create(
           );
         }
       },
+      getFeaturedEquipments: async () => {
+        try {
+          const api = useStore.getState().api;
+          // console.log("Fetching featured equipments...");
+          const response = await api.get("/equipment/?limit=4");
+          return response?.data?.result;
+        } catch (error) {
+          throw new Error(
+            `Failed to fetch featured equipments. ${error.response.data.message}`
+          );
+        }
+      },
       getEquipmentByID: async (id) => {
         try {
           // console.log(`Fetching equipment with id: ${id}`);

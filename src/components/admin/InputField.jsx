@@ -93,6 +93,19 @@ const InputField = ({
           </div>
         </div>
       );
+    } else if (inputType === "conditionSelect") {
+      return (
+        <select
+          type="text"
+          placeholder={label}
+          className="p-2 border border-gray-300 w-full"
+          {...register(name, { required: required })}
+          aria-invalid={error ? "true" : "false"}
+        >
+          <option value="Good">Good</option>
+          <option value="Faulty">Faulty</option>
+        </select>
+      );
     } else {
       return (
         <input

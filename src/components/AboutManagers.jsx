@@ -16,7 +16,7 @@ const AboutManagers = () => {
       {
         // Managers Profile
         data?.map((manager, i) => (
-          <Link href="/about/[manager]" as="/about/manager" key={i}>
+          <Link href={`/about/${manager.id}`} key={i}>
             <ManagerProfile {...manager} key={i} />
           </Link>
         ))
