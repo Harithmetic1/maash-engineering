@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const SearchResults = ({ data }) => {
   return (
-    <div className="search-result z-10 absolute top-14 left-0 w-[90vw] md:w-[40vw] bg-white rounded-b-lg">
+    <div className="search-result z-50 absolute top-14 left-0 w-[90vw] md:w-[40vw] bg-white rounded-b-lg">
       <p className="text-lg font-bold text-[#363636] py-5 px-5">
         Found {data?.length} results
       </p>
