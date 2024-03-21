@@ -47,6 +47,11 @@ const AddManagerButton = () => {
     mutateAsync(fd);
     closeManagerModal();
   };
+
+  const handleCloseModal = (e) => {
+    e.preventDefault();
+    closeManagerModal();
+  };
   return (
     <div className="flex justify-end items-center gap-4">
       <button
@@ -58,7 +63,7 @@ const AddManagerButton = () => {
       <AdminModal isOpen={managerModal?.isOpen} onClose={closeManagerModal}>
         <ModalHeader>Add Manager</ModalHeader>
         <ModalBody>
-          <form onSubmit={handleSubmit(handleAddManager)}>
+          <form>
             <div className="form-group">
               <InputField
                 register={register}
@@ -103,12 +108,15 @@ const AddManagerButton = () => {
                 placeholder="Enter Manager Bio"
               />
             </div>
-            <button className="float-right mt-4 bg-blue-500 rounded-lg font-medium px-4 text-white py-2">
+            <button
+              onClick={handleSubmit(handleAddManager)}
+              className="float-right mt-4 bg-blue-500 rounded-lg font-medium px-4 text-white py-2"
+            >
               Submit
             </button>
             <button
               className="float-right mt-4 mr-2 hover:border hover:border-red-300 rounded-lg px-4 py-2"
-              onClick={closeManagerModal}
+              onClick={handleCloseModal}
             >
               Cancel
             </button>

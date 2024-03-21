@@ -5,24 +5,17 @@ import Navbar from "@/components/Navbar";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
-// import {
-//   getEquipmentByParam,
-//   getEquipments,
-//   searchEquipments,
-// } from "@/api/api";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import SearchResults from "@/components/SearchResults";
 import { useStore } from "@/store/store";
+import SearchBar from "@/components/SearchBar";
 
 const Equipments = () => {
-  const { getEquipments, searchEquipments, getEquipmentByParam } = useStore(
-    (state) => state
-  );
+  const { getEquipments, getEquipmentByParam } = useStore((state) => state);
   const [equipments, setEquipments] = useState([]);
   const [sortedEquipmentsTerm, setSortedEquipmentsTerm] = useState("");
   const [sorted, setSorted] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const [allManufacturers, setAllManufacturers] = useState([]);
   const [filteredEquipmentTerm, setFilteredEquipmentTerm] = useState("");
   const { isPending, isError, data, error } = useQuery({
@@ -40,21 +33,6 @@ const Equipments = () => {
     setAllManufacturers(manufacturers);
     return manufacturers;
   };
-
-  const {
-    isLoading: isSearchLoading,
-    data: searchedData,
-    isError: isSearchError,
-    error: searchError,
-  } = useQuery({
-    queryKey: ["searchedEquipments", searchTerm],
-    queryFn: async () => {
-      const data = await searchEquipments(searchTerm);
-      console.log(data);
-      return data;
-    },
-    enabled: searchTerm.length > 0,
-  });
 
   const { isLoading: isFilteredLoading, data: filteredData } = useQuery({
     queryKey: ["filteredEquipments", filteredEquipmentTerm],
@@ -105,28 +83,6 @@ const Equipments = () => {
   }, [filteredData, sortedEquipmentsTerm, data]);
 
   // State renderers
-  const handleSearchedEquipments = () => {
-    if (isSearchLoading) {
-      return (
-        <div className="z-10 absolute top-14 left-0 w-[90vw] md:w-[40vw] bg-white rounded-b-lg">
-          <div className="flex justify-center items-center w-full h-full animate-spin">
-            <Image src="/loading.svg" alt="loader" width={60} height={60} />
-          </div>
-        </div>
-      );
-    } else if (isSearchError) {
-      return (
-        <div className="flex justify-center items-center w-full h-full">
-          <p className="text-lg font-bold text-[#363636]">
-            {searchError.message}
-          </p>
-        </div>
-      );
-    } else if (searchedData?.result) {
-      console.log(`The searched data is ${searchedData.result}`);
-      return <SearchResults data={searchedData.result} />;
-    }
-  };
 
   const handleFetchFeaturedEquipments = () => {
     if (isPending) {
@@ -163,27 +119,7 @@ const Equipments = () => {
       <Navbar />
       <div className="equipments-page-header flex flex-col justify-center items-center w-full h-[48vh] py-14">
         <div className="equipments-page-header-container hidden sm:flex justify-center items-center w-full h-full">
-          <div className="search-bar flex w-[90vw] md:w-[40vw] relative bg-white justify-between items-center">
-            <div className="icon-search w-full flex gap-14 justify-center items-center px-5 py-4">
-              <div className="search-icon">
-                <FontAwesomeIcon width={24} height={24} icon={faSearch} />
-              </div>
-              <div className="search-input w-full ">
-                <input
-                  type="text"
-                  className="outline-none w-full"
-                  placeholder="Find Equipment"
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="search-button w-32 h-full">
-              <button className="bg-black text-white px-5 py-4 w-full h-full">
-                Search
-              </button>
-            </div>
-            {handleSearchedEquipments()}
-          </div>
+          <SearchBar />
         </div>
         <div className="equipments-page-header-text w-full text-center flex flex-col justify-center items-center">
           <h1 className="text-2xl sm:text-2xl md:text-4xl font-bold text-white">

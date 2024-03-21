@@ -9,10 +9,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const getEquipments = useStore((state) => state.getEquipments);
+  const getFeaturedEquipments = useStore(
+    (state) => state.getFeaturedEquipments
+  );
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["equipments"],
-    queryFn: getEquipments,
+    queryKey: ["featuredEquipments"],
+    queryFn: getFeaturedEquipments,
     // placeholderData: [],
   });
 

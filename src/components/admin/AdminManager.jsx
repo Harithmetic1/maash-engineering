@@ -93,6 +93,11 @@ const AdminManager = ({
     closeDeleteModal();
   };
 
+  const handleCloseModal = (e) => {
+    e.preventDefault();
+    closeEditManagerModal();
+  };
+
   return (
     <div className="manager-card-container border-b border-black p-10">
       <div className="manager-card flex justify-between">
@@ -202,7 +207,7 @@ const AdminManager = ({
             </button>
             <button
               className="float-right mt-4 mr-2 hover:border hover:border-red-300 rounded-lg px-4 py-2"
-              onClick={closeEditManagerModal}
+              onClick={handleCloseModal}
             >
               Cancel
             </button>
