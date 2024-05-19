@@ -15,7 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function HomeCarousel() {
   const autoplayOptions = {
     delay: 4000,
-    rootNode: (emblaRoot) => emblaRoot.parentElement,
+    playOnInt: true,
+    // rootNode: (emblaRoot) => emblaRoot.parentElement,
   };
 
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
@@ -56,31 +57,35 @@ function HomeCarousel() {
   // }, [currentSlideIndex]);
 
   return (
-    <div className="embla" ref={emblaRef}>
-      <div className="embla__container">
-        {services.map((service, index) => (
-          <div
-            key={service.title}
-            className={`slider-items embla__slide ${service.bg_image}`}
-          >
-            <div className="slider-content embla__slide__img w-full h-full  flex justify-center items-center">
-              <div className="content-container w-11/12 opacity-100">
-                <h1 className="text-4xl lg:text-7xl font-bold text-white">
-                  {service.title}
-                </h1>
-                <p className="text-white lg:w-[465px] whitespace-pre-line pt-4">
-                  {service.description}
-                </p>
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="bg-white text-black font-bold py-2 px-14 rounded mt-4"
-                >
-                  Contact Us
-                </button>
+    <>
+      <div className="embla">
+        <div className="embla__viewport" ref={emblaRef}>
+          <div className="embla__container">
+            {services.map((service, index) => (
+              <div
+                key={service.title}
+                className={`slider-items embla__slide ${service.bg_image}`}
+              >
+                <div className="slider-content embla__slide w-full h-full  flex justify-center items-center">
+                  <div className="content-container w-11/12 opacity-100">
+                    <h1 className="text-4xl lg:text-7xl font-bold text-white">
+                      {service.title}
+                    </h1>
+                    <p className="text-white lg:w-[465px] whitespace-pre-line pt-4">
+                      {service.description}
+                    </p>
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="bg-white text-black font-bold py-2 px-14 rounded mt-4"
+                    >
+                      Contact Us
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
       <AdminModal isOpen={showModal} onClose={() => setShowModal(false)}>
         <ModalHeader>Contact Us</ModalHeader>
@@ -129,7 +134,7 @@ function HomeCarousel() {
           </div>
         </ModalBody>
       </AdminModal>
-    </div>
+    </>
   );
 }
 
