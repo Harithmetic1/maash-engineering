@@ -2,6 +2,7 @@
 import EquipmentCard from "@/components/EquipmentCard";
 import Footer from "@/components/Footer";
 import HomeCarousel from "@/components/HomeCarousel";
+import HomeKeenCarousel from "@/components/HomeKeenCarousel";
 import Navbar from "@/components/Navbar";
 import { useStore } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
@@ -54,10 +55,11 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-between overflow-hidden">
       <section className="header">
         <Navbar showSearchIcon={false} />
-        <HomeCarousel />
+        {/* <HomeCarousel /> */}
+        <HomeKeenCarousel />
       </section>
       <section className="flex flex-col items-center justify-center w-full h-full">
         <div className="section-container mt-14 w-[90vw] mb-40">

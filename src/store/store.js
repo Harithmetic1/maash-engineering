@@ -444,6 +444,21 @@ export const useStore = create(
           addUserModal: { ...state.addUserModal, isOpen: false },
         }));
       },
+      equipmentPageAuthUsers: {
+        SUPER_ADMIN: true,
+        ADMIN: true,
+        EDITOR: true,
+      },
+      managerPageAuthUsers: {
+        SUPER_ADMIN: true,
+        ADMIN: true,
+        EDITOR: false,
+      },
+      userPageAuthUsers: {
+        SUPER_ADMIN: true,
+        ADMIN: false,
+        EDITOR: false,
+      },
     }),
     {
       name: "maashStore",
