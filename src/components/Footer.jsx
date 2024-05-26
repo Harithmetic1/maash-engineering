@@ -15,11 +15,11 @@ const Footer = () => {
     <footer className="footer bg-zinc-950 text-white w-full">
       <div className="footer-container flex flex-col items-center justify-center w-[80vw] m-auto pt-20 pb-20">
         <div className="footer-links w-full flex flex-col lg:flex-row justify-evenly items-center lg:items-start">
-          <div className="footer-link">
+          <div className="footer-link pb-4 lg:pb-0">
             {/* <h3 className="text-lg font-bold text-start pb-2 text-[#363636]">
                 About Us
               </h3> */}
-            <ul className="text-sm flex flex-col items-start justify-center">
+            <ul className="text-sm flex flex-col items-center lg:items-start justify-center">
               <li className="pb-2">
                 <Link href="/admin">Admin Login</Link>
               </li>
@@ -34,8 +34,8 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="flex flex-wrap gap-6 justify-between">
-            <div className="social-links flex flex-col items-start justify-center h-full">
+          <div className="flex flex-wrap gap-6 justify-center items-center lg:justify-between">
+            <div className="social-links flex flex-col items-center lg:items-start justify-center h-full">
               <h3 className="text-lg font-bold text-start pb-2">Email</h3>
               <ul className="text-sm flex flex-col gap-2 items-start h-full justify-center">
                 <li className="">
@@ -56,7 +56,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="social-links flex flex-col items-start justify-center h-full">
+            <div className="social-links flex flex-col items-center lg:items-start justify-center h-full">
               <h3 className="text-lg font-bold text-start pb-2">Phone</h3>
               <ul className="text-sm flex flex-col gap-2 items-start h-full justify-center">
                 <li className="">
