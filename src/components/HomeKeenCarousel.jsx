@@ -1,9 +1,22 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
 import { useKeenSlider } from "keen-slider/react";
 
+import AdminModal from "./admin/AdminModal";
+import { ModalHeader, ModalFooter, ModalBody, Button } from "@chakra-ui/react";
+import {
+  faClose,
+  faEnvelope,
+  faLocationDot,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const HomeKeenCarousel = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const [sliderRef] = useKeenSlider(
     {
       loop: true,
@@ -20,7 +33,7 @@ const HomeKeenCarousel = () => {
           if (mouseOver) return;
           timeout = setTimeout(() => {
             slider.next();
-          }, 4000);
+          }, 6000);
         }
         slider.on("created", () => {
           slider.container.addEventListener("mouseover", () => {
@@ -88,6 +101,54 @@ const HomeKeenCarousel = () => {
           </div>
         ))}
       </div>
+
+      <AdminModal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <ModalHeader>Contact Us</ModalHeader>
+        <ModalBody>
+          <div className="modal-ch p-5 w-full">
+            <div className="modal-body h-full flex justify-center items-center">
+              <div className="modal-body-contents w-full h-full flex justify-center gap-6 items-center">
+                <div className="email p-2 lg:p-4 flex justify-center items-center gap-2 rounded-lg bg-neutral-800 text-white">
+                  <a
+                    href="mailto:info@maashengineering.com"
+                    className="text-4xl flex justify-center items-center gap-2"
+                    target="_blank"
+                  >
+                    <FontAwesomeIcon icon={faEnvelope} />
+                    <p className="cursor-pointer text-base">Email us</p>
+                  </a>
+                </div>
+
+                <div className="phone p-2 lg:p-4 flex justify-center items-center gap-2 rounded-lg bg-rose-500 text-white">
+                  <a
+                    href="tel:+234(0) 333 53851"
+                    className="text-4xl flex justify-center items-center gap-2"
+                    target="_blank"
+                  >
+                    <FontAwesomeIcon icon={faPhone} />
+                    <p className="cursor-pointer text-base">Call Us</p>
+                  </a>
+                </div>
+
+                <div className="address p-2 lg:p-4 flex justify-center items-center gap-2 rounded-lg bg-sky-500 text-white">
+                  <a
+                    href="https://maps.app.goo.gl/oXBhZzcEfo73RwUQA"
+                    className="text-4xl flex justify-center items-center gap-2"
+                    target="_blank"
+                  >
+                    <FontAwesomeIcon icon={faLocationDot} />
+                    <p className="cursor-pointer text-base">Find Us</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            {/* <div className='modal-footer'>
+                <button>Cancel</button>
+                <button>Save</button>
+            </div> */}
+          </div>
+        </ModalBody>
+      </AdminModal>
     </>
   );
 };
