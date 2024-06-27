@@ -7,11 +7,17 @@ import {
   ModalHeader,
 } from "@chakra-ui/react";
 
-const AdminModal = ({ children, isOpen, onClose }) => {
+const AdminModal = ({
+  children,
+  isOpen,
+  onClose,
+  modalSize = "xl",
+  background = "white",
+}) => {
   return (
-    <Modal size={"xl"} isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal size={modalSize} isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
-      <ModalContent>{children}</ModalContent>
+      <ModalContent background={background}>{children}</ModalContent>
     </Modal>
   );
 };

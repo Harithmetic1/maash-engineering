@@ -11,6 +11,7 @@ import React, { Suspense, useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
+import ViewAllBtn from "@/components/ViewAllBtn";
 
 const Equipment = ({ params }) => {
   const router = useRouter();
@@ -130,7 +131,9 @@ const Equipment = ({ params }) => {
                               src={image}
                               alt="CAT equipment"
                               fill="responsive"
-                              className="object-cover rounded-tr-xl"
+                              className={`object-cover ${
+                                index == 1 ? "rounded-br-xl" : "rounded-tr-xl"
+                              } `}
                               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 40vw"
                             />
                           </Suspense>
@@ -160,13 +163,11 @@ const Equipment = ({ params }) => {
                 {/* <div className="w-[100vw] flex lg:hidden">
                 <DownloadSpecs />
               </div> */}
-                <div className="view-all hidden w-full lg:flex items-center justify-end ">
-                  {data?.gallery && data?.gallery.length > 2 && (
-                    <button className="bg-white border border-zinc-700 lg:w-[14.931vw] shadow text-zinc-700 rounded px-4 py-2">
-                      View all photos
-                    </button>
-                  )}
-                </div>
+                <ViewAllBtn
+                  gallery={data?.gallery}
+                  manufacturer={data?.manufacturer}
+                  name={data?.name}
+                />
                 <div className="equipment-details px-5 lg:px-0 py-2 lg:py-2 w-full flex flex-col justify-between  items-start gap-4 lg:gap-12">
                   <div className="equipment-name-condition">
                     <h1 className="equipment-name text-[21px] font-bold ">
@@ -192,7 +193,7 @@ const Equipment = ({ params }) => {
                 <div className="price w-full flex justify-between lg:justify-start items-center">
                   <h1 className="lg:hidden flex justify-center items-baseline text-[27px] font-bold">
                     ₦{data?.rate}
-                    <span className="text-xs font-normal">Day</span>
+                    <span className="text-xs font-normal">/Day</span>
                   </h1>
                   <button
                     className={`bg-neutral-800 py-3 lg:hidden rounded justify-center items-center gap-2.5 inline-flex w-[168px] lg:w-[21.181vw] cursor-pointer  ${
