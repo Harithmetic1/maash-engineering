@@ -76,7 +76,7 @@ const HomeKeenCarousel = () => {
 
   return (
     <>
-      <div ref={sliderRef} className="keen-slider">
+      <div ref={sliderRef} className="home keen-slider">
         {services.map((service, index) => (
           <div
             key={service.title}

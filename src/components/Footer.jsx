@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Link from "next/link";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
@@ -39,18 +39,25 @@ const Footer = () => {
               <h3 className="text-lg font-bold text-start pb-2">Email</h3>
               <ul className="text-sm flex flex-col gap-2 items-start h-full justify-center">
                 <li className="">
-                  {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
-                  <span>
+                  <span className="">
                     <a href="mailto:info@maashengineering.com">
-                      info@maashengineering.com
+                      {/* <FontAwesomeIcon
+                        icon={faEnvelope}
+                        className="text-white"
+                      />{" "} */}
+                      Mail Support 1
                     </a>
                   </span>
                 </li>
                 <li className="">
                   {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
                   <span>
-                    <a href="mailto:info@maashengineering.com">
-                      bagudu.ibrahim@gmail.com
+                    <a href="mailto:bagudu.ibrahim@gmail.com">
+                      {/* <FontAwesomeIcon
+                        icon={faEnvelope}
+                        className="text-white"
+                      />{" "} */}
+                      Mail Support 2
                     </a>
                   </span>
                 </li>
@@ -62,19 +69,28 @@ const Footer = () => {
                 <li className="">
                   {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
                   <span>
-                    <a href="tel:+2348033152846">+234 803 315 2846</a>
+                    <a href="tel:+2348033152846">
+                      {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
+                      Contact Support 1
+                    </a>
                   </span>
                 </li>
                 <li className="">
                   {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
                   <span>
-                    <a href="tel:+2349060000232">+234 906 000 0232</a>
+                    <a href="tel:+2349060000232">
+                      {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
+                      Contact Support 2
+                    </a>
                   </span>
                 </li>
                 <li className="">
                   {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
                   <span>
-                    <a href="tel:+2348038499748">+234 803 849 9748</a>
+                    <a href="tel:+2348038499748">
+                      {/* <FontAwesomeIcon icon={faPhone} className="text-white" />{" "} */}
+                      Contact Support 3
+                    </a>
                   </span>
                 </li>
               </ul>

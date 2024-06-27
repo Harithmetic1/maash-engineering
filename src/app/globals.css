@@ -53,7 +53,9 @@ body {
   overflow: hidden;
 }
 
-.keen-slider__slide{
+
+
+.home .keen-slider__slide{
   overflow: hidden;
   width: 100svw !important;
   min-width: 100vw !important;
