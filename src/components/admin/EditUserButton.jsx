@@ -46,7 +46,7 @@ const EditUserButton = ({ id, email, username, role }) => {
   return (
     <div key={id}>
       <button
-        className="text-admin-secondary px-3 py-2 rounded-md"
+        className="text-admin-secondary px-2 py-2 rounded-md"
         onClick={() => setEditUserModalIsOpen(true)}
       >
         <FontAwesomeIcon icon={faEdit} width={20} height={20} />

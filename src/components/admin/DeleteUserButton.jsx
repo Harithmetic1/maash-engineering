@@ -33,7 +33,7 @@ const DeleteUserButton = ({ id }) => {
   return (
     <div>
       <button
-        className="text-admin-secondary px-3 py-2 rounded-md"
+        className="text-admin-secondary px-2 py-2 rounded-md"
         onClick={() => setDeleteModal(true)}
       >
         <FontAwesomeIcon icon={faTrash} width={20} height={20} />

@@ -46,15 +46,15 @@ const Page = () => {
   };
   return (
     <AdminLayout>
-      <div className="flex flex-col justify-center items-center  w-full">
+      <div className="flex flex-col justify-center items-center w-full">
         <form
-          className="flex flex-col gap-4 w-2/3 shadow p-10"
+          className="flex flex-col gap-4 w-full lg:w-2/3 shadow p-4 lg:p-10"
           onSubmit={handleSubmit(handleSubmitForm)}
         >
           <h1 className="text-2xl font-bold ">Add Equipment</h1>
           <div className="flex justify-center items-center gap-4">
-            <div className="flex w-full gap-4">
-              <div className="flex flex-col justify-start items-center gap-2 w-2/4">
+            <div className="flex flex-col lg:flex-row w-full gap-4">
+              <div className="flex flex-col justify-start items-center gap-2 w-full lg:w-2/4">
                 <InputField
                   register={register}
                   error={errors.name}

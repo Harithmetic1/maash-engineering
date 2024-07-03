@@ -171,6 +171,51 @@ body {
   display: none;
 }
 
+.mobile-only{
+  @apply lg:hidden flex;
+}
+
+.desktop-only{
+  @apply hidden lg:flex
+}
+
+.sidebar-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes show-sidebar {
+  0%{
+    width: 0px;
+    opacity: 0;
+    transform: translateX(-100vw);
+  }
+  100%{
+    width: fit-content;
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+}
+
+@keyframes hide-sidebar {
+  0%{
+    width: fit-content;
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+  100%{
+    width: 0;
+    opacity: 0;
+    transform: translateX(-100vw);
+  }
+}
+
 @keyframes hide-nav {
   0% {
     transform: translateY(0);
@@ -263,6 +308,14 @@ body {
     width: 60%;
     height: 50%;
   }
+
+  .show-sidebar{
+    animation: show-sidebar 0.3s ease-in-out forwards;
+  }
+  
+  .hide-sidebar{
+    animation: hide-sidebar 0.3s ease-in-out forwards;
+  }
 }
 
 .modal-close{
@@ -299,4 +352,21 @@ body {
 form label{
   font-size: 12px !important;
   line-height: 14.63px;
+}
+
+.hamburger{
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hamburger div{
+  width: 22.5px;
+  height: 1px;
+  background-color: black;
+}
+
+@media screen and (min-width: 1024px) {
+    .sidebar-container{
+      position: relative;
+    }
 }
