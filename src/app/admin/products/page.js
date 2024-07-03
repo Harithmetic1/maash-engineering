@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Products = () => {
   const { getEquipments } = useStore((state) => state);
@@ -31,6 +31,10 @@ const Products = () => {
     }
   };
 
+  useEffect(() => {
+    setProducts(data);
+  }, [data]);
+
   const handleFetchProducts = () => {
     if (isPending) {
       return (
@@ -44,11 +48,11 @@ const Products = () => {
           <p className="text-lg font-bold text-[#363636]">{error.message}</p>
         </div>
       );
-    } else if (produts.length > 0) {
+    } else if (produts?.length > 0 && produts) {
       return produts?.map((equipment, index) => (
         <EquipmentRow {...equipment} index={index} key={equipment?.id} />
       ));
-    } else if (produts.length === 0) {
+    } else if (produts?.length === 0 || !produts) {
       return (
         <div className="flex justify-center items-center w-full h-full py-11">
           <p className="text-lg font-bold text-[#363636]">
