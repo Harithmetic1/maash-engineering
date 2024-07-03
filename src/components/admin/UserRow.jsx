@@ -23,11 +23,11 @@ const UserRow = ({ id, index, username, email, role, lastLogin }) => {
 
   return (
     <tr className="w-full h-fit">
-      <td className="text-center">{index + 1}</td>
-      <td className="text-center">{username}</td>
-      <td className="text-center">{email ? email : "No email"}</td>
-      <td className="text-center">{role}</td>
-      <td className="text-center">
+      <td className="text-center w-1/12">{index + 1}</td>
+      <td className="text-center w-2/12">{username}</td>
+      <td className="text-center w-3/12">{email ? email : "No email"}</td>
+      <td className="text-center w-2/12">{role}</td>
+      <td className="text-center w-2/12">
         {lastLogin ? handleTimeStamps(lastLogin) : "Not yet Logged In"}
       </td>
       <td className="text-center flex justify-center items-center">

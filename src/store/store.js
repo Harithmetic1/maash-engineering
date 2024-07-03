@@ -459,6 +459,12 @@ export const useStore = create(
         ADMIN: false,
         EDITOR: false,
       },
+      showSideBar: false,
+      toggleShowSideBar: () => {
+        set((state) => ({
+          showSideBar: !state.showSideBar,
+        }));
+      },
     }),
     {
       name: "maashStore",

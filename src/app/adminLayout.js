@@ -23,12 +23,14 @@ const AdminLayout = ({ children }) => {
   }, []);
 
   return (
-    <div className="flex justify-normal items-center">
+    <div className="flex justify-normal">
       <SideBar />
       <ToastContainer />
       <div className="w-full h-screen flex flex-col justify-start ">
         <AdminNavbar />
-        <div className="h-[95svh] w-full overflow-y-auto">{children}</div>
+        <div className="h-[95svh] p-4 w-full overflow-x-hidden overflow-y-auto">
+          {children}
+        </div>
       </div>
     </div>
   );

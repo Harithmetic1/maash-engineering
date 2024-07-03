@@ -102,23 +102,50 @@ const AdminManager = ({
     <div className="manager-card-container border-b border-black p-10">
       <div className="manager-card flex justify-between">
         <div className="manager flex flex-col gap-5">
-          <div className="manger-profile-pic">
-            {profileImage ? (
-              <Image
-                src={profileImage}
-                alt="ibrahim"
-                className="rounded-full object-cover"
-                width={100}
-                height={100}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faUser}
-                className="rounded-[50%] p-6 border-black text-6xl border-2"
-              />
-            )}
+          <div className="flex justify-between items-center">
+            <div className="manger-profile-pic">
+              {profileImage ? (
+                <Image
+                  src={profileImage}
+                  alt="ibrahim"
+                  className="rounded-full object-cover"
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faUser}
+                  className="rounded-[50%] p-6 border-black text-6xl border-2"
+                />
+              )}
+            </div>
+
+            <div className="manager-action flex gap-5">
+              {profileDocument && (
+                <button className="edit-manager-btn text-gray-600 px-3 py-1 h-10 rounded-md">
+                  <Image
+                    src="/pdf_outline.svg"
+                    alt="pdf"
+                    width={20}
+                    height={20}
+                  />
+                </button>
+              )}
+              <button
+                className="edit-manager-btn text-gray-600 px-3 py-1 h-10 rounded-md"
+                onClick={openEditManagerModal}
+              >
+                <FontAwesomeIcon icon={faEdit} width={20} height={20} />
+              </button>
+              <button
+                className="delete-manager-btn text-gray-600 px-3 py-1 h-10  rounded-md"
+                onClick={openDeleteModal}
+              >
+                <FontAwesomeIcon icon={faTrash} width={20} height={20} />
+              </button>
+            </div>
           </div>
-          <div className="manager-info flex flex-col gap-2 w-9/12">
+          <div className="manager-info flex flex-col gap-2 lg:w-9/12">
             <h1 className="text-2xl font-bold text-admin-secondary">
               {firstName} {lastName}
             </h1>
@@ -127,25 +154,6 @@ const AdminManager = ({
             </p>
             <p className="text-admin-secondary text-sm">{bio}</p>
           </div>
-        </div>
-        <div className="manager-action flex gap-5">
-          {profileDocument && (
-            <button className="edit-manager-btn text-gray-600 px-3 py-1 h-10 rounded-md">
-              <Image src="/pdf_outline.svg" alt="pdf" width={20} height={20} />
-            </button>
-          )}
-          <button
-            className="edit-manager-btn text-gray-600 px-3 py-1 h-10 rounded-md"
-            onClick={openEditManagerModal}
-          >
-            <FontAwesomeIcon icon={faEdit} width={20} height={20} />
-          </button>
-          <button
-            className="delete-manager-btn text-gray-600 px-3 py-1 h-10  rounded-md"
-            onClick={openDeleteModal}
-          >
-            <FontAwesomeIcon icon={faTrash} width={20} height={20} />
-          </button>
         </div>
       </div>
       <AdminModal

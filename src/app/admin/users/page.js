@@ -59,16 +59,16 @@ const AdminUser = () => {
             <h1 className="text-2xl font-bold text-admin-secondary">Users</h1>
             <AddUserButton />
           </div>
-          <div className="user-table-container mt-10 bg-admin-primary rounded-3xl">
-            <table className="w-full h-fit">
+          <div className="user-table-container mt-10 w-[100svw] lg:max-w-[75svw] overflow-x-scroll lg:overflow-hidden bg-admin-primary rounded-3xl">
+            <table className="w-[255svw] lg:w-full h-fit overflow-scroll lg:overflow-hidden">
               <thead className="w-full h-14 bg-admin-primary rounded-t-3xl">
                 <tr>
-                  <th className="text-center">S/N</th>
-                  <th className="text-center">UserName</th>
-                  <th className="text-center">Email</th>
-                  <th className="text-center">Role</th>
-                  <th className="text-center">Last Login</th>
-                  <th className="text-center">Action</th>
+                  <th className="text-center w-1/12">S/N</th>
+                  <th className="text-center w-2/12">UserName</th>
+                  <th className="text-center w-3/12">Email</th>
+                  <th className="text-center w-2/12">Role</th>
+                  <th className="text-center w-2/12">Last Login</th>
+                  <th className="text-center w-4/12">Action</th>
                 </tr>
               </thead>
               <tbody>{handleFetchUsers()}</tbody>
