@@ -16,10 +16,10 @@ const ManagerProfile = ({
       <div className="manager-profile-pic w-52 h-52 relative">
         {profileImage ? (
           <Image
-            src="/IBRAHIM, AMINU BAGUDU.png"
+            src={profileImage}
             alt="oil worker working at an oil rig"
             fill="responsive"
-            className="object-contain rounded-xl"
+            className="object-cover rounded-xl"
           />
         ) : (
           <FontAwesomeIcon
